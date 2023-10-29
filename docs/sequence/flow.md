@@ -39,6 +39,11 @@ sequenceDiagram
     Note left of db: 複数のGPS情報(今回は運転免許証番号)をもとに検索
     db -->> backend:  配布対象Wallet Address複数取得
     backend -->> frontend:  配布対象Wallet Address複数取得
+    frontend ->> backend: お礼情報を記録
+    Note left of backend: POST /thank
+    backend ->> db: お礼情報を記録
+    db -->> backend: お礼情報を記録
+    backend ->> frontend: お礼情報を記録
 
     frontend ->> wallet: トークン配布実行
     Note left of wallet: ユーザーと周囲のWallet Address & 配布トークン数
