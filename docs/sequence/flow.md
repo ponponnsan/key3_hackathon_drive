@@ -30,6 +30,7 @@ sequenceDiagram
     Note left of backend: GET /user
     backend ->> db: ユーザーのWallet Address取得
     Note left of db: GPS情報(今回は運転免許証番号)をもとに検索
+    Note left of db: 必要であれば、このタイミングで他の情報を取得
     db -->> backend: ユーザーのWallet Address取得
     backend -->> frontend: ユーザーのWallet Address取得
     frontend ->> frontend: 周囲のGPS情報取得(サンプルデータ)
@@ -37,6 +38,7 @@ sequenceDiagram
     Note left of backend: GET /users
     backend ->> db:  配布対象Wallet Address複数取得
     Note left of db: 複数のGPS情報(今回は運転免許証番号)をもとに検索
+    Note left of db: 必要であれば、このタイミングで他の情報を取得
     db -->> backend:  配布対象Wallet Address複数取得
     backend -->> frontend:  配布対象Wallet Address複数取得
     frontend ->> backend: お礼情報を記録
