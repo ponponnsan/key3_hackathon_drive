@@ -146,8 +146,6 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# OpenZeppelin
-@openzeppelin/contracts/
 
 #hardhat
 node_modules
@@ -155,6 +153,7 @@ coverage
 coverage.json
 typechain
 typechain-types
+src/
 
 # Hardhat files
 cache
