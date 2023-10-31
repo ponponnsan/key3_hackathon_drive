@@ -147,7 +147,7 @@ dist
 .pnp.*
 
 # OpenZeppelin
-@openzeppelin/
+@openzeppelin/contracts/
 
 #hardhat
 node_modules
