@@ -146,6 +146,9 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+# OpenZeppelin
+@openzeppelin/
+
 #hardhat
 node_modules
 coverage
