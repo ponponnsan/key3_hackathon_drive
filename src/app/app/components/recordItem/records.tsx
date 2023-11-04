@@ -1,6 +1,8 @@
-"use client"
 import { useEffect, useState } from "react";
 import RecordItem from "./recordItem";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+
+import "react-tabs/style/react-tabs.css";
 
 function Records() {
   type Record = {
@@ -20,8 +22,7 @@ function Records() {
       ammount: 0,
       latitude: "000",
       longitude: "001",
-      timestamp:"14:53"
-
+      timestamp: "14:53",
     },
     {
       hash: Math.random().toString(32).substring(2),
@@ -31,7 +32,7 @@ function Records() {
       ammount: 0,
       latitude: "000",
       longitude: "001",
-      timestamp:"14:53"
+      timestamp: "14:53",
     },
     {
       hash: Math.random().toString(32).substring(2),
@@ -41,7 +42,7 @@ function Records() {
       ammount: 0,
       latitude: "000",
       longitude: "001",
-      timestamp:"14:53"
+      timestamp: "14:53",
     },
     {
       hash: Math.random().toString(32).substring(2),
@@ -51,7 +52,7 @@ function Records() {
       ammount: 0,
       latitude: "000",
       longitude: "001",
-      timestamp:"14:53"
+      timestamp: "14:53",
     },
   ];
   const records = demoData;
@@ -63,7 +64,12 @@ function Records() {
         <ul>
           {records.map((record) => (
             <li key={record.hash}>
-              <RecordItem from={record.from} message={record.message} ammount={record.ammount} timestamp={record.timestamp} />
+              <RecordItem
+                from={record.from}
+                message={record.message}
+                ammount={record.ammount}
+                timestamp={record.timestamp}
+              />
             </li>
           ))}
         </ul>

@@ -1,25 +1,24 @@
-import { memo } from 'react';
-import type { FC } from 'react';
+import { memo } from "react";
+import type { FC } from "react";
 
 // import resets from '../_resets.module.css';
-import classes from './Frame625697.module.css';
-import { VectorIcon3 } from './VectorIcon3';
-import Ellipse2Icon from './Ellipse2Icon';
-import IconLocation from './IconLocation/IconLocation';
-import IconHandshakeOutline from './IconHandshakeOutline/IconHandshakeOutline';
-import VectorIcon from './VectorIcon';
-import VectorIcon2 from './VectorIcon2';
+import classes from "./Frame625697.module.css";
+import { VectorIcon3 } from "./VectorIcon3";
+import Ellipse2Icon from "./Ellipse2Icon";
+import IconLocation from "./IconLocation/IconLocation";
+import IconHandshakeOutline from "./IconHandshakeOutline/IconHandshakeOutline";
+import VectorIcon from "./VectorIcon";
+import VectorIcon2 from "./VectorIcon2";
 
 interface Props {
   className?: string;
   from: string;
   message: string;
   ammount: number;
-  timestamp:string;
-
+  timestamp: string;
 }
 /* @figmaId 501:148 */
-export default function RecordItem(props:Props) {
+export default function RecordItem(props: Props) {
   return (
     <div className={` ${classes.root}`}>
       <div className={classes.frame625643}>
@@ -43,7 +42,9 @@ export default function RecordItem(props:Props) {
                 vector2: <VectorIcon2 className={classes.icon2} />,
               }}
             />
-            <div className={classes.unnamed2}>東京都渋谷区代々木神園町２−１</div>
+            <div className={classes.unnamed2}>
+              東京都渋谷区代々木神園町２−１
+            </div>
           </div>
         </div>
       </div>
@@ -60,4 +61,4 @@ export default function RecordItem(props:Props) {
       </div>
     </div>
   );
-};
+}
