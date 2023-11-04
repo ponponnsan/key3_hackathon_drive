@@ -3,13 +3,9 @@ import type { FC } from "react";
 
 // import resets from '../_resets.module.css';
 import classes from "./Frame625697.module.css";
-import { VectorIcon3 } from "./VectorIcon3";
 import Ellipse2Icon from "./Ellipse2Icon";
 import IconLocation from "./IconLocation/IconLocation";
 import IconHandshakeOutline from "./IconHandshakeOutline/IconHandshakeOutline";
-import VectorIcon from "./VectorIcon";
-import VectorIcon2 from "./VectorIcon2";
-
 interface Props {
   className?: string;
   from: string;
@@ -35,13 +31,7 @@ export default function RecordItem(props: Props) {
             </p>
           </div>
           <div className={classes.frame625639}>
-            <IconLocation
-              className={classes.iconLocation}
-              swap={{
-                vector: <VectorIcon className={classes.icon} />,
-                vector2: <VectorIcon2 className={classes.icon2} />,
-              }}
-            />
+            <IconLocation className={classes.iconLocation} />
             <div className={classes.unnamed2}>
               東京都渋谷区代々木神園町２−１
             </div>
@@ -51,12 +41,7 @@ export default function RecordItem(props: Props) {
       <div className={classes.frame625641}>
         <div className={classes._1}>1</div>
         <div className={classes.frame625638}>
-          <IconHandshakeOutline
-            className={classes.iconHandshakeOutline}
-            swap={{
-              vector: <VectorIcon3 className={classes.icon3} />,
-            }}
-          />
+          <IconHandshakeOutline className={classes.iconHandshakeOutline} />
         </div>
       </div>
     </div>

@@ -1,9 +1,8 @@
-import { memo } from 'react';
-import type { FC, ReactNode } from 'react';
+import { memo } from "react";
+import type { FC, ReactNode } from "react";
 
-import resets from '../_resets.module.css';
-import classes from './IconHandshakeOutline.module.css';
-import { VectorIcon } from './VectorIcon';
+import resets from "../_resets.module.css";
+import classes from "./IconHandshakeOutline.module.css";
 
 interface Props {
   className?: string;
@@ -15,10 +14,16 @@ interface Props {
   };
 }
 /* @figmaId 501:139 */
-export default function IconHandshakeOutline(props:Props) {
+export default function IconHandshakeOutline(props: Props) {
   return (
-    <div className={`${resets.storybrainResets} ${props.classes?.root || ''} ${props.className || ''} ${classes.root}`}>
-      <div className={classes.vector}>{props.swap?.vector || <VectorIcon className={classes.icon} />}</div>
+    <div
+      className={`${resets.storybrainResets} ${props.classes?.root || ""} ${
+        props.className || ""
+      } ${classes.root}`}
+    >
+      <div className={classes.vector}>
+        <img src={"handshake-outline.png"}></img>
+      </div>
     </div>
   );
-};
+}
