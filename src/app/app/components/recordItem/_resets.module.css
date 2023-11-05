@@ -9,6 +9,7 @@
   text-decoration: none;
   min-width: 0;
   overflow-wrap: anywhere;
+  width: 100%;
 }
 
 .storybrainResets,

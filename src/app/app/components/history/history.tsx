@@ -2,14 +2,14 @@
 
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 
-import "react-tabs/style/react-tabs.css";
+import "./react-tabs.css";
 import Records from "../recordItem/records";
 import classes from "../../page.module.css";
 import resets from "../../components/recordItem/_resets.module.css";
 
 export default function History() {
   return (
-    <Tabs>
+    <Tabs allowFullScreen={true}>
       <TabList>
         <Tab>全て</Tab>
         <Tab>贈った</Tab>
