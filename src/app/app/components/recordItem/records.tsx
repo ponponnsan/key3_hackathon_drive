@@ -51,7 +51,7 @@ function Records() {
             <ul>
               {daylyRecords.map((arr1, i) => {
                 return (
-                  <li key={`${arr1[0].timestamp}${i}`}>
+                  <li key={`${arr1[0].hash}${i}`}>
                     {new Date(arr1[0].timestamp).toDateString() ===
                     today.toDateString()
                       ? "今日"
@@ -62,16 +62,14 @@ function Records() {
                     <ul>
                       {arr1.map((record) => {
                         return (
-                          <>
-                            <li key={`${record.hash}${i}`}>
-                              <RecordItem
-                                from={record.from}
-                                message={record.message}
-                                ammount={record.ammount}
-                                timestamp={record.timestamp}
-                              />
-                            </li>
-                          </>
+                          <li key={`${record.hash}${i}`}>
+                            <RecordItem
+                              from={record.from}
+                              message={record.message}
+                              ammount={record.ammount}
+                              timestamp={record.timestamp}
+                            />
+                          </li>
                         );
                       })}
                     </ul>
