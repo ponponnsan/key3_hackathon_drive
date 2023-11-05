@@ -8,17 +8,17 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract BraGo is ERC20 {
 
-    event BraGoTransfer(address indexed to, uint256 amount, string longitude, string latitude, string message);
+    event BraGoTransfer(address indexed from, address indexed to, uint256 amount, string longitude, string latitude, string message);
 
     constructor() ERC20("BraGo", "BG") {
          // 初期発行を行わないため、コンストラクタは空にします。
     }
 
 
-    function mint(address to, uint256 amount, string calldata longitude, string calldata latitude, string calldata message) public {
+    function mint(address from, address to, uint256 amount, string calldata longitude, string calldata latitude, string calldata message) public {
         _mint(to, amount);
 
-        emit BraGoTransfer(to, amount, longitude, latitude, message);
+        emit BraGoTransfer(from, to, amount, longitude, latitude, message);
     }
 
 }

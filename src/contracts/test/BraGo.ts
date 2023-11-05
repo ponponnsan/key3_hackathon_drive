@@ -37,16 +37,16 @@ describe('BraGo Contract', function () {
   describe('Minting', function () {
     it('Should mint new tokens', async function () {
       const mintAmount = ethers.parseUnits('100', await braGo.decimals());
-      await braGo.connect(owner).mint(await addr1.getAddress(), mintAmount, '0', '0', 'Test Message');
+      await braGo.connect(owner).mint(await owner.getAddress(), await addr1.getAddress(), mintAmount, '0', '0', 'Test Message');
       const addr1Balance = await braGo.balanceOf(await addr1.getAddress());
       expect(addr1Balance).to.equal(mintAmount);
     });
 
     it('Should emit Transfer event on mint', async function () {
       const mintAmount = ethers.parseUnits('100', await braGo.decimals());
-      await expect(braGo.connect(owner).mint(await addr1.getAddress(), mintAmount, '0', '0', 'Test Message'))
+      await expect(braGo.connect(owner).mint(await owner.getAddress(), await addr1.getAddress(), mintAmount, '0', '0', 'Test Message'))
         .to.emit(braGo, 'BraGoTransfer')
-        .withArgs(await addr1.getAddress(), mintAmount, '0', '0', 'Test Message');
+        .withArgs(await owner.getAddress(), await addr1.getAddress(), mintAmount, '0', '0', 'Test Message');
     });
   });
 });
