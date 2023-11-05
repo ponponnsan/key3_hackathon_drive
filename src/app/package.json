@@ -6,22 +6,28 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "create2": "ts-node app/utils/aa/create2.ts"
   },
   "dependencies": {
+    "@thirdweb-dev/wallets": "^2.1.0",
+    "@turnkey/api-key-stamper": "^0.1.1",
+    "@turnkey/http": "^2.2.0",
+    "@turnkey/viem": "^0.3.2",
+    "@zerodev/sdk": "^4.2.0",
+    "next": "14.0.0",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.0.0"
+    "viem": "^1.18.4"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10",
-    "postcss": "^8",
-    "tailwindcss": "^3",
     "eslint": "^8",
-    "eslint-config-next": "14.0.0"
+    "eslint-config-next": "14.0.0",
+    "postcss": "^8",
+    "tailwindcss": "^3"
   }
 }

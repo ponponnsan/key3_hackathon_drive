@@ -21,6 +21,9 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 *.pem
 .env*.local
 
+# VSCode
+.vscode/
+
 # vercel
 .vercel
 
@@ -158,5 +161,3 @@ src/contracts/src/
 # Hardhat files
 cache
 artifacts
-
-
