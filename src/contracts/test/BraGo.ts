@@ -14,19 +14,22 @@ describe('BraGo Contract', function () {
     [owner, addr1, ...addrs] = await ethers.getSigners();
 
     // Deploy a new BraGo contract before each test.
-    braGo = await BraGo.deploy(await owner.getAddress());
+    braGo = await BraGo.deploy();
     await braGo.waitForDeployment()
   });
 
   describe('Deployment', function () {
-    it('Should set the right owner', async function () {
-      expect(await braGo.owner()).to.equal(await owner.getAddress());
-    });
 
-    it('Should mint initial supply to the owner', async function () {
-      let decimals = await braGo.decimals();
-      const ownerBalance = await braGo.balanceOf(await owner.getAddress());
-      expect(ownerBalance).to.equal(ethers.parseUnits('100000', await braGo.decimals()));
+
+    // it('Should mint initial supply to the owner', async function () {
+    //   let decimals = await braGo.decimals();
+    //   const ownerBalance = await braGo.balanceOf(await owner.getAddress());
+    //   expect(ownerBalance).to.equal(ethers.parseUnits('100000', await braGo.decimals()));
+    // });
+
+    it("Should have 0 supply", async function () {
+      const totalSupply = await braGo.totalSupply();
+      expect(totalSupply).to.equal(0);
     });
 
   });

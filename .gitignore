@@ -150,9 +150,10 @@ dist
 #hardhat
 node_modules
 coverage
-coverage.json
+coverage.jsons
 typechain
 typechain-types
+src/contracts/src/
 
 # Hardhat files
 cache
