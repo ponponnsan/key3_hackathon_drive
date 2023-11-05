@@ -145,3 +145,18 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+
+#hardhat
+node_modules
+coverage
+coverage.jsons
+typechain
+typechain-types
+src/contracts/src/
+
+# Hardhat files
+cache
+artifacts
+
+
