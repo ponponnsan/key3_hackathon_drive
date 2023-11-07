@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import TokenCard from './TokenCard'; // TokenCardコンポーネントのパスを適宜変更してください。
-import ActionButton from './ActionButton'; // ActionButtonコンポーネントのパスを適宜変更してください。
+import TokenCard from './TokenCard'; 
+import ActionButton from './ActionButton'; 
+import Popup from './Popup';
+
 
 const SendToken: React.FC = () => {
+    // ポップアップの表示状態を管理する状態
+  const [showPopup, setShowPopup] = useState(false);
   const [isDrivingMode, setIsDrivingMode] = useState(false);
 
   const handleStartDrivingClick = () => {
@@ -26,7 +30,9 @@ const SendToken: React.FC = () => {
             <ActionButton
               mainText="BraGo, send tokens"
               subText="アプリ終了する時どうするか書く"
+              onClick={() => setShowPopup(true)} 
             />
+            {showPopup && <Popup />}
           </>
         )}
       </main>
