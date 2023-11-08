@@ -4,9 +4,10 @@ import { ethers } from "hardhat";
 async function main() {
   const BraGo = await ethers.getContractFactory('BraGo');
   const braGo = await BraGo.deploy();
-  const constract = await braGo.waitForDeployment();
-  console.log(`Contract Address: ${await constract.target}`);
-
+  const contract = await braGo.waitForDeployment();
+  const deploymentTx = contract.deploymentTransaction()
+  console.log(`Contract Address: ${await contract.target}`);
+  console.log(`Tx Hash: ${deploymentTx?.hash}`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere
