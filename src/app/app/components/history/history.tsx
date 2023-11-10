@@ -6,9 +6,11 @@ import "./react-tabs.css";
 import Records from "../recordItem/records";
 import classes from "../../page.module.css";
 import resets from "../../components/recordItem/_resets.module.css";
+import SendToken from "../sendtoken/SendToken";
 
-export default function History() {
+export default function Main() {
   return (
+
     <Tabs allowFullScreen={true}>
       <TabList>
         <Tab>全て</Tab>
@@ -22,7 +24,7 @@ export default function History() {
         </div>
       </TabPanel>
       <TabPanel>
-        <h1>Aboutです</h1>
+        <SendToken />
       </TabPanel>
       <TabPanel>
         <h1>Contactです</h1>

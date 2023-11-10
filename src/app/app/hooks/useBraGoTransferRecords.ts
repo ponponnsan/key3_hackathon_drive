@@ -19,8 +19,8 @@ export const useBraGoTransferRecords = () => {
       from: "ponさん",
       message: "ありがとう1",
       ammount: 0,
-      latitude: "000",
-      longitude: "001",
+      latitude: "35.6894",
+      longitude: "139.6917",
       timestamp: "2023-11-05 14:53",
     },
     {

@@ -69,28 +69,28 @@
     flex-direction: column;
   }
   .labelWrapper {
-    font-size: 14px;
+    font-size: 12px;
     font-family: Lucida Grande, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
       'Liberation Sans', sans-serif;
     flex-shrink: 1;
   }
   .label {
     color: #333;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 150%;
     font-family: Lucida Grande, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
       'Liberation Sans', sans-serif;
   }
   .label2 {
     color: #f2994a;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 150%;
     font-family: Lucida Grande, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
       'Liberation Sans', sans-serif;
   }
   .label3 {
     color: #333;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 150%;
     font-family: Lucida Grande, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
       'Liberation Sans', sans-serif;
@@ -120,7 +120,7 @@
   }
   ._1 {
     color: #000;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 150%;
     font-family: Lucida Grande, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
       'Liberation Sans', sans-serif;
