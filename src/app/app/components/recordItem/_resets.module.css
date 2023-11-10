@@ -20,7 +20,7 @@
 .storybrainResets ul,
 .storybrainResets ol {
   text-indent: 0;
-  padding-inline-start: 1.5em;
+  padding-inline-start: 0.1em;
 }
 
 .storybrainResets p:empty::before {

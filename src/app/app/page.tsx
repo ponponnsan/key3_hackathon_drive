@@ -1,12 +1,25 @@
-import Image from 'next/image'
-
 "use client";
+
+import Image from 'next/image'
 import SendToken from "./components/sendtoken/SendToken";
+import Main from './components/history/history';
 
 export default function Home() {
   return (
     <div>
-      <SendToken />
+      <div className="flex flex-col h-screen">
+        <main className="flex-grow overflow-y-auto">
+          <header className="...">
+            {/* ヘッダーコンテンツ */}
+          </header>
+
+          <Main />
+          <footer className="...">
+            {/* フッターコンポーネント */}
+          </footer>
+        </main>
+      </div>
+
     </div>
   );
 }
