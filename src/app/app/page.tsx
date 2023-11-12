@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import SendToken from "./components/sendtoken/SendToken";
 import Main from './components/history/history';
+import ConfirmLicense from "./components/Signup/signup";
 
 export default function Home() {
   return (
@@ -13,7 +14,8 @@ export default function Home() {
             {/* ヘッダーコンテンツ */}
           </header>
 
-          <Main />
+          {/* <Main /> */}
+          <ConfirmLicense />
           <footer className="...">
             {/* フッターコンポーネント */}
           </footer>
