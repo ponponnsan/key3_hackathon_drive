@@ -1,9 +1,18 @@
 // pages/signup.tsx
 import React from 'react';
 import Image from 'next/image';
-import LicenseNumberInput from "./registerLicense";
+import { useRouter } from 'next/navigation';
+import ActionButton from '../utils/buttom/ActionButton';
+
+
+
 
 const ConfirmLicense: React.FC = () => {
+  const router = useRouter();
+  const handleButtonClick = () => {
+    // 必要なロジックを実行
+    router.push('/license-input');
+  };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
@@ -21,15 +30,12 @@ const ConfirmLicense: React.FC = () => {
         </div>
         {/* サービス名と説明 */}
         <p className="text-center mb-4">車社会に「ありがとう」を増やし、「良い行動」を増やす</p>
-        <p className="text-sm text-center mb-8">
-          BraGoを通じて、安全で快適な運転体験をサポートします。
-        </p>
-        <button
-          onClick={LicenseNumberInput}
-          className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        >
-          登録
-        </button>
+        <p className="text-sm text-center mb-8">Pigeonを通じて、安全で快適な運転体験をサポートします。</p>
+        <ActionButton
+            mainText="登録"
+            subText=""
+            onClick={handleButtonClick}
+        />
       </div>
     </div>
   );

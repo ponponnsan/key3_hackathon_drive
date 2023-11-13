@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from 'react';
 import TokenCard from './TokenCard';
 import ActionButton from '../utils/buttom/ActionButton';

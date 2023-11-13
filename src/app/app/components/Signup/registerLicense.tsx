@@ -1,12 +1,24 @@
-import React, { useState } from 'react';
-import ActionButton from '../utils/buttom/ActionButton';
-import signupPopup from './signupPopup';
+"use client"
 
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import ActionButton from '../utils/buttom/ActionButton'; 
+import SignupPopup from './SignupPopup'; 
 
 const LicenseNumberInput: React.FC = () => {
+  const router = useRouter();
   const [licenseNumber, setLicenseNumber] = useState('');
   const [showPopup, setShowPopup] = useState(false);
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // ここにフォーム送信のロジックを追加
+    setShowPopup(true); // Popup表示
+
+    // 送信処理が成功した後にナビゲーションを行う
+    // 成功したと仮定していますが、実際には送信処理の結果に基づいてください
+    router.push('/account');
+  };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
@@ -28,11 +40,10 @@ const LicenseNumberInput: React.FC = () => {
           </div>
           <ActionButton
             mainText="登録"
-            subText="登録がうまくった時と言ってなかったときの処理も書く"
-            onClick={() => setShowPopup(true)}
+            subText="登録がうまくいった時といってなかった時の処理も書く"
           />
         </form>
-        {showPopup && <signupPopup />}
+        {showPopup && <SignupPopup />}
       </div>
     </div>
   );

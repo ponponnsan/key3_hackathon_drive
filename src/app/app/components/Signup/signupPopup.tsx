@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const signupPopup = () => {
+const SignupPopup = () => {
       // ポップアップの表示状態を制御するための状態
     const [isVisible, setIsVisible] = useState(true);
 
@@ -27,7 +27,7 @@ const signupPopup = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h3 className="text-lg leading-6 font-medium text-gray-900">Welcome to BraGo!!</h3>
+            <h3 className="text-lg leading-6 font-medium text-gray-900">Welcome to Pigeion!!</h3>
             <div className="mt-2 px-7 py-3">
               <p className="text-sm text-gray-500">
                 Registration has been completed!
@@ -39,5 +39,5 @@ const signupPopup = () => {
     );
   };
   
-  export default signupPopup;
+  export default SignupPopup;
   
