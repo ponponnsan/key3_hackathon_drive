@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 const Footer: React.FC = () => {
@@ -16,13 +17,13 @@ const Footer: React.FC = () => {
       zIndex: 1000 // 他の要素の上に表示するためのz-index
     }}>
       <Link href="/history" passHref>
-        <a><i>🏠</i></a> {/* ホームアイコン */}
+          <Image src="/handshake-outline.png" alt="historyIcon" width={30} height={30} />
       </Link>
       <Link href="/send" passHref>
-        <a><i>💬</i></a> {/* チャットアイコン */}
+        <Image src="/sendIcon.svg" alt="sendIcon" width={30} height={30} />
       </Link>
       <Link href="/account" passHref>
-        <a><i>📊</i></a> {/* 統計アイコン */}
+        <Image src="/accountIcon.svg" alt="accountIcon" width={30} height={30} />
       </Link>
     </footer>
   );
