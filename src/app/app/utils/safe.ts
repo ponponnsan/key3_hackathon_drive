@@ -3,7 +3,6 @@ import {
   PRIVATE_KEY,
   PROVIDER_URL,
   CONTRACT_ADDRESS,
-  RECEIVE_TOKEN_ADDRESS,
 } from "../common/config";
 import {
   EthAdapter,
@@ -85,7 +84,7 @@ export const getSafeWallet = async (salt: string) => {
 };
 
 export const sendToken = async (
-    salt: string,
+  salt: string,
     to: string,
   message: string,
   longitude: string,
