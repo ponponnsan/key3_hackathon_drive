@@ -3,7 +3,7 @@ import React from 'react';
 interface ActionButtonProps {
   mainText: string;
   subText: string;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const ActionButton: React.FC<ActionButtonProps> = ({ mainText, subText, onClick }) => {

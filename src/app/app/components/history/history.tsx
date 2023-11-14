@@ -8,14 +8,12 @@ import classes from "../../page.module.css";
 import resets from "../../components/recordItem/_resets.module.css";
 import SendToken from "../sendtoken/SendToken";
 
-export default function Main() {
+export default function History() {
   return (
 
     <Tabs allowFullScreen={true}>
       <TabList>
         <Tab>全て</Tab>
-        <Tab>贈った</Tab>
-        <Tab>受け取った</Tab>
       </TabList>
 
       <TabPanel>
@@ -23,12 +21,12 @@ export default function Main() {
           <Records />{" "}
         </div>
       </TabPanel>
-      <TabPanel>
+      {/* <TabPanel>
         <SendToken />
       </TabPanel>
       <TabPanel>
         <h1>Contactです</h1>
-      </TabPanel>
+      </TabPanel> */}
     </Tabs>
   );
 }

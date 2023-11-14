@@ -3,8 +3,19 @@
 import Image from 'next/image'
 import SendToken from "./components/sendtoken/SendToken";
 import Main from './components/history/history';
+import ConfirmLicense from "./components/Signup/Signup";
+import { useRouter } from 'next/navigation';
+import ActionButton from './components/utils/buttom/ActionButton';
+import LicenseNumberInput from '../app/components/Signup/RegisterLicense'; 
+
+
 
 export default function Home() {
+  const router = useRouter();
+  const handleButtonClick = () => {
+    // 必要なロジックを実行
+    router.push('/license-input');
+  };
   return (
     <div>
       <div className="flex flex-col h-screen">
@@ -13,10 +24,11 @@ export default function Home() {
             {/* ヘッダーコンテンツ */}
           </header>
 
-          <Main />
-          <footer className="...">
-            {/* フッターコンポーネント */}
-          </footer>
+          {/* <Main /> */}
+          <ConfirmLicense />
+          {/* <LicenseNumberInput /> */}
+
+
         </main>
       </div>
 
