@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 import TokenCard from './TokenCard';
 import ActionButton from '../utils/buttom/ActionButton';
-import VoiceRecognitionButton from "../recognizevoice/recognizeSound"
 import Popup from './Popup';
 
 
@@ -15,15 +14,6 @@ const SendToken: React.FC = () => {
     setIsDrivingMode(true);
   };
 
-  const handleVoiceStart = () => {
-    // 音声認識開始時の処理
-  };
-
-  const handleVoiceStop = () => {
-    // 音声認識終了時の処理
-    setShowPopup(true);
-  };
-
   return (
     <>
       {!isDrivingMode ? (
@@ -34,12 +24,11 @@ const SendToken: React.FC = () => {
       ) : (
         <>
           <TokenCard earnedTokens={24} spentTokens={44} />
-          {/* <ActionButton
+          <ActionButton
             mainText="BraGo, send tokens"
             subText="アプリ終了する時どうするか書く"
             onClick={() => setShowPopup(true)}
-          /> */}
-          <VoiceRecognitionButton onStart={handleVoiceStart} onStop={handleVoiceStop} />
+          />
           {showPopup && <Popup />}
         </>
       )}
