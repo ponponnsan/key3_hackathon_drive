@@ -2,7 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import ActionButton from '../utils/buttom/ActionButton';
+import ActionButton from '../utils/button/ActionButton';
 
 
 

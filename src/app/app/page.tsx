@@ -5,7 +5,7 @@ import SendToken from "./components/sendtoken/SendToken";
 import Main from './components/history/history';
 import ConfirmLicense from "./components/Signup/Signup";
 import { useRouter } from 'next/navigation';
-import ActionButton from './components/utils/buttom/ActionButton';
+import ActionButton from './components/utils/button/ActionButton';
 import LicenseNumberInput from '../app/components/Signup/RegisterLicense'; 
 
 
