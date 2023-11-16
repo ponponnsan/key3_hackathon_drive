@@ -3,10 +3,10 @@
 import Image from 'next/image'
 import SendToken from "./components/sendtoken/SendToken";
 import Main from './components/history/history';
-import ConfirmLicense from "./components/Signup/Signup";
+import ConfirmLicense from "./components/Signup/signup";
 import { useRouter } from 'next/navigation';
 import ActionButton from './components/utils/buttom/ActionButton';
-import LicenseNumberInput from '../app/components/Signup/RegisterLicense'; 
+import LicenseNumberInput from '../app/components/Signup/registerLicense'; 
 
 
 
