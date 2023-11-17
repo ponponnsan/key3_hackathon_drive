@@ -1,0 +1,19 @@
+.container {
+    display: block;
+    /* flex-direction:column; */
+}
+
+.detailContainer {
+    display: grid;
+    justify-content: center;
+}
+
+.tokenicon {
+    position: relative;
+    width: 24px;
+    height: 24px;
+    align-items: flex-start;
+    border-radius: 50px;
+    background-color: #f2f2f2;
+    overflow: hidden;
+}

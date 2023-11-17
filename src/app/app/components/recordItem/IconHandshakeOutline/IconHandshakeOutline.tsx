@@ -17,12 +17,11 @@ interface Props {
 export default function IconHandshakeOutline(props: Props) {
   return (
     <div
-      className={`${resets.storybrainResets} ${props.classes?.root || ""} ${
-        props.className || ""
-      } ${classes.root}`}
+      className={`${resets.storybrainResets} ${props.classes?.root || ""} ${props.className || ""
+        } ${classes.root}`}
     >
       <div className={classes.vector}>
-        <img src={"handshake-outline.png"}></img>
+        <img src={"token.png"}></img>
       </div>
     </div>
   );

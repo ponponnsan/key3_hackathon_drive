@@ -8,10 +8,17 @@ import {
   useBraGoTransferRecords,
 } from "@/app/hooks/useBraGoTransferRecords";
 import RecordDetail from "../recordDetail/recordDetail";
+import resets from "../recordItem/_resets.module.css";
+import classes from "../../page.module.css";
 
+export enum RecordsCategory {
+  ALL, Send, Recv
+}
 interface Props {
   onClick?: (brago: BraGoTransfer) => void;
   children?: React.ReactNode;
+  category: RecordsCategory
+
 }
 
 function Records(props: Props) {
@@ -23,7 +30,19 @@ function Records(props: Props) {
   const today = new Date();
   const yesterday = new Date(new Date(today).setDate(today.getDate() - 1));
 
+  const filter = (record: BraGoTransfer) => {
+    if (props.category == RecordsCategory.ALL) {
+      return true;
+    } else if (props.category == RecordsCategory.Recv) {
+      return !record.issend;
+    } else {
+      return record.issend
+    }
+
+  }
+
   useEffect(() => {
+
     if (isLoading) return;
     if (!stopper.current) {
       stopper.current = true;
@@ -31,6 +50,7 @@ function Records(props: Props) {
       const map = new Map<string, BraGoTransfer[]>();
 
       braGoTransferRecords
+        .filter(record => filter(record))
         .sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))
         .map((record) => {
           const date = new Date(record.timestamp);
@@ -56,16 +76,18 @@ function Records(props: Props) {
       return showDetail ?
         <>
           <RecordDetail
-            from={showDetail.from}
+            from={showDetail.name}
             message={showDetail.message}
             ammount={showDetail.ammount}
             timestamp={showDetail.timestamp}
             lat={Number(showDetail.latitude)}
             lng={Number(showDetail.longitude)}
-            onClose={() => setShowDetail(undefined)}>
+            onClose={() => setShowDetail(undefined)}
+            issend={showDetail.issend}>
+
           </RecordDetail>
         </>
-        : <div >
+        : <div className={`${resets.storybrainResets} ${classes.root}`} >
           {
             <>
               <ul>
@@ -82,13 +104,13 @@ function Records(props: Props) {
                       <ul>
                         {arr1.map((record) => {
                           return (
-                            <li key={`${record.hash}${i}`} onClick={() => setShowDetail(record)}>
+                            <li key={`${record.hash}${i}`} onClick={() => { setShowDetail(record) }}>
                               <RecordItem
-                                from={record.from}
+                                from={record.name}
                                 message={record.message}
                                 ammount={record.ammount}
                                 timestamp={record.timestamp}
-                              />
+                                issend={record.issend} />
 
                             </li>
                           );
