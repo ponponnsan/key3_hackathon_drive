@@ -28,17 +28,3 @@ $ npm run start
 ```bash
 $ npm run lint
 ```
-
-## Backend
-
-- `.env`の`DATABASE_URL`に自分の環境の適したものを設定してください。
-
-```bash
-$ npx prisma migrate dev
-```
-
-- DBの管理画面起動
-
-```bash
-$ npx prisma studio
-```

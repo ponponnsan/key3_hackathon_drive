@@ -1,25 +1,26 @@
-import { ethers } from "ethers";
+import { ethers } from 'ethers';
 import {
   PRIVATE_KEY,
   PROVIDER_URL,
   CONTRACT_ADDRESS,
-} from "../common/config";
+} from '../common/config';
 import {
   EthAdapter,
   MetaTransactionData,
   OperationType,
-} from "@safe-global/safe-core-sdk-types";
-import crypto from "crypto";
+} from '@safe-global/safe-core-sdk-types';
+import crypto from 'crypto';
 import Safe, {
   EthersAdapter,
   SafeAccountConfig,
   SafeFactory,
-} from "zkatana-gelato-protocol-kit";
-import { GelatoRelayPack } from "zkatana-gelato-relay-kit";
-import ContractInfo from "./abi.json";
+} from 'zkatana-gelato-protocol-kit';
+import { GelatoRelayPack } from 'zkatana-gelato-relay-kit';
+import ContractInfo from './abi.json';
 
 const encryptSha256 = (value: string) => {
-  const hash = crypto.createHash("sha256").update(value, "utf8").digest("hex");
+  console.log(`value: ${value}`);
+  const hash = crypto.createHash('sha256').update(value, 'utf8').digest('hex');
   const decimalHash = String(BigInt(`0x${hash}`));
   return decimalHash;
 };
@@ -27,7 +28,7 @@ const encryptSha256 = (value: string) => {
 const common = async (salt: string) => {
   const RPC_URL = PROVIDER_URL;
   const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
-  console.log("Network: ", await provider.getNetwork());
+  console.log('Network: ', await provider.getNetwork());
   const signer = new ethers.Wallet(PRIVATE_KEY, provider);
   const ethAdapterOwner = new EthersAdapter({
     ethers,
@@ -50,7 +51,7 @@ const common = async (salt: string) => {
   };
 };
 
-export const createSafeWallet = async (salt: string) => {
+const createSafeWallet = async (salt: string) => {
   const { safeFactory, safeAccountConfig, saltNonce } = await common(salt);
 
   const safeSdk = await safeFactory.deploySafe({
@@ -64,7 +65,7 @@ export const createSafeWallet = async (salt: string) => {
   return safeAddress;
 };
 
-export const getSafeWallet = async (salt: string) => {
+const getSafeWallet = async (salt: string) => {
   const { safeFactory, safeAccountConfig, saltNonce, ethAdapterOwner, signer } =
     await common(salt);
 
@@ -83,8 +84,22 @@ export const getSafeWallet = async (salt: string) => {
   return { safeSDK, signer, ethAdapterOwner };
 };
 
+export const createAAWallet = async (licenseNumber: string) => {
+  console.log(`licenseNumber: ${licenseNumber}`);
+  let aaWalletAddress = '';
+  try {
+    aaWalletAddress = await createSafeWallet(licenseNumber);
+  } catch (err) {
+    console.log(`err: ${err}`);
+    const { safeSDK } = await getSafeWallet(licenseNumber);
+    aaWalletAddress = await safeSDK.getAddress();
+  }
+  console.log(`aaWalletAddress: ${aaWalletAddress}`);
+  return aaWalletAddress;
+};
+
 export const sendToken = async (
-  salt: string,
+    salt: string,
     to: string,
   message: string,
   longitude: string,
@@ -97,21 +112,21 @@ export const sendToken = async (
     signer
   );
   console.log(`tokenContract: ${tokenContract}`);
-  const contractWalletAddress: string = await safeSDK.getAddress();
-  console.log(`contractWalletAddress: ${contractWalletAddress}`);
+  const aaWalletAddress: string = await safeSDK.getAddress();
+  console.log(`aaWalletAddress: ${aaWalletAddress}`);
 
   const safeTransactionData: MetaTransactionData[] = [
     {
       to: CONTRACT_ADDRESS,
-      data: tokenContract.interface.encodeFunctionData("mint", [
-        contractWalletAddress,
+      data: tokenContract.interface.encodeFunctionData('mint', [
+        aaWalletAddress,
         to,
         1,
         longitude,
         latitude,
         message,
       ]),
-      value: "0",
+      value: '0',
       operation: OperationType.Call,
     },
   ];
@@ -141,15 +156,5 @@ export const sendToken = async (
   );
 
   console.log(`response: ${JSON.stringify(response)}`);
+  return response.taskId
 };
-
-// const main = async () => {
-//   const salt = "000000000000";
-//   // await createSafeWallet(salt); // 0x811c9C561b694F92e31bF6282356e697bE109c9c
-//   // await getSafeWallet(salt); // 0x811c9C561b694F92e31bF6282356e697bE109c9c
-//   await sendToken(salt);
-// };
-
-// main();
-
-// ts-node app/utils/aa/safe.ts
