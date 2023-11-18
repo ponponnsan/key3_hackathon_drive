@@ -22,7 +22,7 @@ interface Props {
 }
 
 function Records(props: Props) {
-  const { braGoTransferRecords, isLoading } = useBraGoTransferRecords();
+  const { transferLogs, isLoading } = useBraGoTransferRecords();
   const [daylyRecords, setDaylyRecords] = useState<BraGoTransfer[][]>([]);
   const [showDetail, setShowDetail] = useState<BraGoTransfer | undefined>(undefined);
 
@@ -49,7 +49,7 @@ function Records(props: Props) {
 
       const map = new Map<string, BraGoTransfer[]>();
 
-      braGoTransferRecords
+      transferLogs
         .filter(record => filter(record))
         .sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))
         .map((record) => {
@@ -67,7 +67,7 @@ function Records(props: Props) {
       });
       setDaylyRecords(arr);
     }
-  }, [braGoTransferRecords, isLoading]);
+  }, [transferLogs, isLoading]);
 
   if (isLoading) {
     return <>Loading...</>;
