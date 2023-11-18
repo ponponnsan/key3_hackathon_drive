@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from "react";
 import TokenCard from './TokenCard';
 import ActionButton from '../utils/button/ActionButton';
 import VoiceRecognitionButton from "../recognizevoice/recognizeSound"
@@ -28,12 +28,26 @@ const SendToken: React.FC = () => {
     setShowPopup(true);
   };
 
+  useEffect(() => {
+    // 2000ミリ秒（2秒）後にポップアップを非表示にする
+    const timer = setTimeout(() => {
+      setShowPopup(false);
+    }, 1500);
+
+    // コンポーネントがアンマウントされるときにタイマーをクリアする
+    return () => clearTimeout(timer);
+  }, [showPopup]);
+
   return (
     <>
       {!isDrivingMode ? (
         <>
           <TokenCard earnedTokens={24} spentTokens={44} />
-          <ActionButton mainText="Start Driving" subText={`Turn on GPS to get location information.\n Tap to start voice instructions`} onClick={handleStartDrivingClick} />
+          <ActionButton
+            mainText="Start Driving"
+            subText={`Turn on GPS to get location information.\n Tap to start voice instructions`}
+            onClick={handleStartDrivingClick}
+          />
         </>
       ) : (
         <>
@@ -43,14 +57,16 @@ const SendToken: React.FC = () => {
             subText="アプリ終了する時どうするか書く"
             onClick={() => setShowPopup(true)}
           /> */}
-          <VoiceRecognitionButton onStart={handleVoiceStart} onStop={handleVoiceStop} onTokenRequest={handleVoiceRequest} />
-          {showPopup && <Popup />}
+          <VoiceRecognitionButton
+            onStart={handleVoiceStart}
+            onStop={handleVoiceStop}
+            onTokenRequest={handleVoiceRequest}
+          />
+          {showPopup && <Popup isVisible={showPopup} />}
         </>
       )}
-
     </>
   );
 };
 
 export default SendToken;
-
