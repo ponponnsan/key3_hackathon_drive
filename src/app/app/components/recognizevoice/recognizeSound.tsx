@@ -27,14 +27,21 @@ const VoiceRecognitionButton: React.FC<VoiceRecognitionButtonProps> = ({ onStart
     recognition.continuous = true;
     recognition.maxAlternatives = 1;
 
+    if (!recognition) return;
+
+
     recognition.onresult = (event) => {
       const results = event.results;
       let finalTranscript = '';
       for (let i = event.resultIndex; i < results.length; i++) {
-        finalTranscript += results[i][0].transcript;
-      }
+        const transcript = results[i][0].transcript;
+        if (results[i] && results[i][0]) {
+          finalTranscript += transcript;
+          }
+        }
       setText(finalTranscript);
     };
+
 
     recognition.onend = () => {
       if (isListening) {

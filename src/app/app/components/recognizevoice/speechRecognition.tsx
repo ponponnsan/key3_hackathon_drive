@@ -4,10 +4,9 @@ interface ISpeechRecognitionEvent {
   results: {
     isFinal: boolean;
     [key: number]:
-      | undefined
-      | {
+      {
           transcript: string;
-        };
+      };
   }[];
 }
 
