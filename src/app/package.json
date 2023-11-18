@@ -22,9 +22,11 @@
     "zkatana-gelato-relay-kit": "^1.3.2"
   },
   "devDependencies": {
+    "@types/googlemaps": "^3.43.3",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/webspeechapi": "^0.0.29",
     "autoprefixer": "^10",
     "eslint": "^8",
     "eslint-config-next": "14.0.0",
