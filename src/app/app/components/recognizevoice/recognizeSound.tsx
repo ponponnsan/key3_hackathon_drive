@@ -1,5 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ActionButton from '../utils/button/ActionButton';
+import IWindow from './window';
+
+// windowの型定義にIWindowを使う
+declare const window: IWindow;
 
 // ずっと会話が続くようにする。
 // BraGo, send tokensの文言を変える。
@@ -12,11 +16,12 @@ interface VoiceRecognitionButtonProps {
 const VoiceRecognitionButton: React.FC<VoiceRecognitionButtonProps> = ({ onStart, onStop, onTokenRequest }) => {
   const [isListening, setIsListening] = useState(false);
   const [text, setText] = useState<string>("");
-  const recognitionRef = useRef<SpeechRecognition | null>(null);
+  const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
+
+  
   const handleRecogniteStart = () => {
-    const recognition = new webkitSpeechRecognition();
-    recognitionRef.current = recognition; // 参照を保存
+    const recognition = new Recognition();
     recognition.lang = "ja-JP";
     recognition.interimResults = false;
     recognition.continuous = true;
@@ -48,14 +53,7 @@ const VoiceRecognitionButton: React.FC<VoiceRecognitionButtonProps> = ({ onStart
   }, [text]);
   // , onTokenRequest
 
-  useEffect(() => {
-    return () => {
-      // コンポーネントのアンマウント時に音声認識を停止
-      if (recognitionRef.current) {
-        recognitionRef.current.stop();
-      }
-    };
-  }, []);
+
 
   const handleVoiceClick = () => {
     if (!isListening) {
@@ -73,9 +71,6 @@ const VoiceRecognitionButton: React.FC<VoiceRecognitionButtonProps> = ({ onStart
 
   const stopListening = () => {
     setIsListening(false);
-    if (recognitionRef.current) {
-      recognitionRef.current.stop();
-    }
     onStop();
   };
 
