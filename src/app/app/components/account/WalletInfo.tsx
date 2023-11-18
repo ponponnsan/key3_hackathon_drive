@@ -8,7 +8,7 @@ interface WalletInfoProps {
 
 const WalletInfo: React.FC<WalletInfoProps> = ({ accountName, walletAddress }) => {
   return (
-    <div className="bg-white shadow rounded-lg p-6">
+    <div className="bg-white dark:bg-gray-800 shadow rounded-lg p-6 m-4">
       <div className="flex items-center space-x-4">
         <div className="rounded-full bg-gray-200 h-14 w-14"></div>
         <div className="flex-1">
