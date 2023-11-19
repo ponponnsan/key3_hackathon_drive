@@ -25,7 +25,7 @@ const LicenseNumberInput: React.FC = () => {
 
       // 処理が成功したら、ポップアップを表示し、アカウントページへ遷移
       setShowPopup(true);
-      router.push('/account');
+      // router.push('/account');
     } else {
       setErrorMessage('Your license number is invalid. Please ensure it is correct.');
       setShowPopup(true); 
@@ -33,9 +33,13 @@ const LicenseNumberInput: React.FC = () => {
   };
 
   useEffect(() => {
+    
     // 1500ミリ秒（1.5秒）後にポップアップを非表示にする
     const timer = setTimeout(() => {
-      setShowPopup(false);
+      if (showPopup) {
+        setShowPopup(false);
+        router.push('/account');
+      }
     }, 1500);
 
     // コンポーネントがアンマウントされるときにタイマーをクリアする
