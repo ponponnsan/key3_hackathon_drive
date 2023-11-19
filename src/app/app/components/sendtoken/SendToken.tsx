@@ -36,7 +36,7 @@ const SendToken: React.FC = () => {
         "139.692616" // 緯度 
       );
     } catch (error) {
-      setErrorMessage('Your license number is invalid. Please ensure it is correct.');
+      setErrorMessage('Failed to send token... please try again');
       setShowPopup(true);
     }
   };
@@ -45,7 +45,7 @@ const SendToken: React.FC = () => {
     // 1500ミリ秒（1.5秒）後にポップアップを非表示にする
     const timer = setTimeout(() => {
       setShowPopup(false);
-    }, 1500);
+    }, 2000);
 
     // コンポーネントがアンマウントされるときにタイマーをクリアする
     return () => clearTimeout(timer);

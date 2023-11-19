@@ -20,11 +20,13 @@ const LicenseNumberInput: React.FC = () => {
   
     if (isNumericString(licenseNumber)){
       // createAAWallet 関数を呼び出し
-      await createAAWallet(licenseNumber);
-      localStorage.setItem("licenseNumber", `${licenseNumber}`);
-
+      const aaWalletAddress = await createAAWallet(licenseNumber);
+      localStorage.setItem("licenseNumber", licenseNumber);
+      // localStorage.setItem("username", username);
+      localStorage.setItem("walletAddress", aaWalletAddress);
       // 処理が成功したら、ポップアップを表示し、アカウントページへ遷移
       setShowPopup(true);
+
       // router.push('/account');
     } else {
       setErrorMessage('Your license number is invalid. Please ensure it is correct.');
@@ -41,7 +43,7 @@ const LicenseNumberInput: React.FC = () => {
         router.push('/account');
       }
     }, 1500);
-
+  
     // コンポーネントがアンマウントされるときにタイマーをクリアする
     return () => clearTimeout(timer);
   }, [showPopup]);
