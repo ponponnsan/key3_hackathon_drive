@@ -1,4 +1,4 @@
-import {ISpeechRecognition} from '../../utils/interfaces';
+import {ISpeechRecognition} from './interfaces';
 
 // ISpeechRecognitionConstructorはコンストラクト可能でコンストラクトするとISpeechRecognitionの型定義を持つ
 interface ISpeechRecognitionConstructor {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ActionButton from '../utils/button/ActionButton';
-import IWindow from './window';
+import IWindow from '../../utils/window';
 
 // windowの型定義にIWindowを使う
 declare const window: IWindow;
