@@ -1,10 +1,12 @@
+/// <reference types="@types/googlemaps" />
+
 import { Children, isValidElement, useEffect, useRef, useState, cloneElement } from "react";
 
 type MapProps = google.maps.MapOptions & {
   style: { [key: string]: string };
   children?:
-  | React.ReactElement<google.maps.MarkerOptions>[]
-  | React.ReactElement<google.maps.MarkerOptions>;
+    | React.ReactElement<google.maps.MarkerOptions>[]
+    | React.ReactElement<google.maps.MarkerOptions>;
 };
 
 export const Map: React.FC<MapProps> = ({ children, style, ...options }) => {
