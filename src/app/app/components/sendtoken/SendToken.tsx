@@ -12,6 +12,15 @@ const SendToken: React.FC = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [isDrivingMode, setIsDrivingMode] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [licenseNumber, setlicenseNumber] = useState("")
+
+  useEffect(() => {
+    // useEffect内でlocalStorageからデータを取得
+    const aalicenseNumber = localStorage.getItem("licenseNumber")
+    if (aalicenseNumber) {
+      setlicenseNumber(aalicenseNumber);
+    }
+  }, []);
 
   const handleStartDrivingClick = () => {
     setIsDrivingMode(true);
@@ -25,11 +34,12 @@ const SendToken: React.FC = () => {
   };
 
   const handleVoiceRequest = async () => {
-    const licenseNumber = localStorage.getItem("licenseNumber")
+
+    
     // トークンを送る際の処理
     try{
       await sendToken(
-        "11111111", // 免許証番号
+        licenseNumber, // 免許証番号
         "0x1a4ac4bA30fA08e32F99A526DDF731f807b5a7F5", // 送付先アドレス
         "ありがとう", // メッセージ
         "35.666862", // 経度

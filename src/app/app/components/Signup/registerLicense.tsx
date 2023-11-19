@@ -17,11 +17,15 @@ const LicenseNumberInput: React.FC = () => {
   useEffect(() => {
     let timer: any;
 
-    if (showPopup) {
+    if (showPopup && !errorMessage) {
       timer = setTimeout(() => {
         setShowPopup(false);
         router.push('/account');
       }, 1500);
+    } else {
+      timer = setTimeout(() => {
+        setShowPopup(false);
+      }, 1500)
     }
 
     // コンポーネントがアンマウントされるときにタイマーをクリアする

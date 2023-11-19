@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
         <Image src="/sendIcon.svg" alt="sendIcon" width={30} height={30} />
       </Link>
       <Link href="/account" passHref>
-        <Image src="/accountIcon.svg" alt="accountIcon" width={30} height={30} />
+        <Image src="/footerAccount.svg" alt="footerAccount" width={30} height={30} />
       </Link>
     </footer>
   );
