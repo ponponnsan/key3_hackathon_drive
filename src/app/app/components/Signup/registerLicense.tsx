@@ -1,24 +1,46 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import ActionButton from '../utils/button/ActionButton'; 
 import SignupPopup from './signupPopup'; 
+import { isNumericString } from '../utils/errorhandling';
+import { createAAWallet } from '../../utils/safe'
 
 const LicenseNumberInput: React.FC = () => {
   const router = useRouter();
   const [licenseNumber, setLicenseNumber] = useState('');
   const [showPopup, setShowPopup] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // ここにフォーム送信のロジックを追加
-    setShowPopup(true); // Popup表示
+  
+    if (isNumericString(licenseNumber)){
+      // createAAWallet 関数を呼び出し
+      await createAAWallet(licenseNumber);
+      localStorage.setItem("licenseNumber", `${licenseNumber}`);
 
-    // 送信処理が成功した後にナビゲーションを行う
-    // 成功したと仮定していますが、実際には送信処理の結果に基づいてください
-    router.push('/account');
+      // 処理が成功したら、ポップアップを表示し、アカウントページへ遷移
+      setShowPopup(true);
+      router.push('/account');
+    } else {
+      setErrorMessage('Your license number is invalid. Please ensure it is correct.');
+      setShowPopup(true); 
+    }
   };
+
+  useEffect(() => {
+    // 1500ミリ秒（1.5秒）後にポップアップを非表示にする
+    const timer = setTimeout(() => {
+      setShowPopup(false);
+    }, 1500);
+
+    // コンポーネントがアンマウントされるときにタイマーをクリアする
+    return () => clearTimeout(timer);
+  }, [showPopup]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
@@ -40,10 +62,10 @@ const LicenseNumberInput: React.FC = () => {
           </div>
           <ActionButton
             mainText="登録"
-            subText="登録がうまくいった時といってなかった時の処理も書く"
+            subText="半角数字で入力"
           />
         </form>
-        {showPopup && <SignupPopup />}
+        {showPopup && <SignupPopup isVisible={showPopup} errorMessage={errorMessage} />}
       </div>
     </div>
   );

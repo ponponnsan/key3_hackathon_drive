@@ -1,4 +1,22 @@
-interface ISpeechRecognitionEvent {
+export interface IUser {
+    licenseNumber?: string;
+}
+
+export interface IToken {
+  salt: string;
+  to: string;
+  message: string;
+  longitude: string;
+  latitude: string;
+}
+
+export interface PopupProps {
+  isVisible: boolean;
+  errorMessage?: string;
+}
+
+
+export interface ISpeechRecognitionEvent {
   resultIndex: number; 
   isTrusted?: boolean;
   results: {
@@ -10,7 +28,7 @@ interface ISpeechRecognitionEvent {
   }[];
 }
 
-interface ISpeechRecognition extends EventTarget {
+export interface ISpeechRecognition extends EventTarget {
   // properties
   grammars: string;
   lang: string;
@@ -38,4 +56,4 @@ interface ISpeechRecognition extends EventTarget {
   stop(): void;
 }
 
-export default ISpeechRecognition;
+

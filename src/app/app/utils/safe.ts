@@ -3,7 +3,7 @@ import {
   PRIVATE_KEY,
   PROVIDER_URL,
   CONTRACT_ADDRESS,
-} from '../common/config';
+} from './config';
 import {
   EthAdapter,
   MetaTransactionData,
