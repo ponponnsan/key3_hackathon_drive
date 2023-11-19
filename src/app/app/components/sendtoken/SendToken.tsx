@@ -22,20 +22,15 @@ const SendToken: React.FC = () => {
     }
   }, []);
 
-  const handleStartDrivingClick = () => {
-    setIsDrivingMode(true);
-  };
-
   const handleVoiceStart = () => {
     // 音声認識開始時の処理
+    setIsDrivingMode(true);
   };
 
   const handleVoiceStop = () => {
   };
 
   const handleVoiceRequest = async () => {
-
-    
     // トークンを送る際の処理
     try{
       await sendToken(
@@ -45,6 +40,8 @@ const SendToken: React.FC = () => {
         "35.666862", // 経度
         "139.692616" // 緯度 
       );
+
+      setShowPopup(true)
     } catch (error) {
       setErrorMessage('Failed to send token... please try again');
       setShowPopup(true);
@@ -62,28 +59,15 @@ const SendToken: React.FC = () => {
   }, [showPopup]);
 
   return (
-    <>
-      {!isDrivingMode ? (
-        <>
-          <TokenCard earnedTokens={24} spentTokens={44} />
-          <ActionButton
-            mainText="Start Driving"
-            subText={`Turn on GPS to get location information.\n Tap to start voice instructions`}
-            onClick={handleStartDrivingClick}
-          />
-        </>
-      ) : (
-        <>
-          <TokenCard earnedTokens={24} spentTokens={44} />
-          <VoiceRecognitionButton
-            onStart={handleVoiceStart}
-            onStop={handleVoiceStop}
-            onTokenRequest={handleVoiceRequest}
-          />
-          {showPopup && <Popup isVisible={showPopup} errorMessage={errorMessage}/>}
-        </>
-      )}
-    </>
+      <>
+        <TokenCard earnedTokens={24} spentTokens={44} />
+        <VoiceRecognitionButton
+          onStart={handleVoiceStart}
+          onStop={handleVoiceStop}
+          onTokenRequest={handleVoiceRequest}
+        />
+        {showPopup && <Popup isVisible={showPopup} errorMessage={errorMessage}/>}
+      </>
   );
 };
 

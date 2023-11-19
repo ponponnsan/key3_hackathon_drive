@@ -83,8 +83,8 @@ const VoiceRecognitionButton: React.FC<VoiceRecognitionButtonProps> = ({ onStart
 
   return (
     <ActionButton
-      mainText={isListening ? "Listening..." : "BraGo, send tokens"}
-      subText={isListening ? text : "アプリ終了する時どうするか書く"}
+      mainText={isListening ? "Listening..." : "Start Driving"}
+      subText={isListening ? text : `Turn on GPS to get location information.\n Tap to start voice instructions`}
       onClick={handleVoiceClick}
     />
   );

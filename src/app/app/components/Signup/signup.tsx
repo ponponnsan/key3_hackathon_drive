@@ -32,7 +32,7 @@ const ConfirmLicense: React.FC = () => {
         <p className="text-center mb-4">車社会に「ありがとう」を増やし、「良い行動」を増やす</p>
         <p className="text-sm text-center mb-8">Pigeonを通じて、安全で快適な運転体験をサポートします。</p>
         <ActionButton
-            mainText="登録"
+            mainText="始める"
             subText=""
             onClick={handleButtonClick}
         />
