@@ -35,8 +35,9 @@ export interface WalletInfoProps {
 }
 
 export interface TokenCardProps {
-  earnedTokens: number;
-  spentTokens: number;
+  balance: number,
+  sent: number,
+  received: number,
 }
 
 export interface ISpeechRecognitionEvent {

@@ -11,11 +11,11 @@ declare const window: IWindow;
 const VoiceRecognitionButton: React.FC<VoiceRecognitionButtonProps> = ({ onStart, onStop, onTokenRequest }) => {
   const [isListening, setIsListening] = useState(false);
   const [text, setText] = useState<string>("");
-  const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 
   
   const handleRecogniteStart = () => {
+    const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const recognition = new Recognition();
     recognition.lang = "ja-JP";
     recognition.interimResults = false;

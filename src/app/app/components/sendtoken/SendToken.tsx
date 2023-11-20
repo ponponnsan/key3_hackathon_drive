@@ -5,8 +5,8 @@ import VoiceRecognitionButton from "../recognizevoice/recognizeSound"
 import Popup from './Popup';
 import { sendToken } from '../../utils/safe'
 import useSendTokenQuery from '@/app/hooks/useSendToken';
-
-
+import {TokenBalance} from "@/app/hooks/useBalance";
+// , currentBalance
 
 const SendToken:any = () => {
   // ポップアップの表示状態を管理する状態
@@ -14,6 +14,9 @@ const SendToken:any = () => {
   const [isDrivingMode, setIsDrivingMode] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const { mapsErrorMessage, sendTokenRecords } = useSendTokenQuery();
+  const { balance, sent, received, sendBalance, receiveBalance} = TokenBalance();
+  // const { } = currentBalance();
+  
 
 
   const handleVoiceStart = () => {
@@ -28,6 +31,10 @@ const SendToken:any = () => {
   const handleVoiceRequest = async () => {
     // トークンを送る際の処理
       try{
+        if (mapsErrorMessage !== '') {
+          setErrorMessage('Failed to send token... please try again');
+          setShowPopup(true);
+        } 
         await Promise.all(sendTokenRecords.map(record => 
           sendToken(
             record.licenseNumber,
@@ -38,7 +45,8 @@ const SendToken:any = () => {
           )
         ));
     
-        setShowPopup(true)
+        setShowPopup(true);
+        sendBalance();
       } catch (error) {
         setErrorMessage('Failed to send token... please try again');
         setShowPopup(true);
@@ -57,7 +65,7 @@ const SendToken:any = () => {
 
   return (
       <>
-        <TokenCard earnedTokens={24} spentTokens={44} />
+        <TokenCard  balance={balance} sent={sent} received={received}/>
         <VoiceRecognitionButton
           onStart={handleVoiceStart}
           onStop={handleVoiceStop}
