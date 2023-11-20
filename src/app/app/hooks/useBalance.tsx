@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import {TokenProps} from "@/app/utils/interfaces"
 
 
-interface TokenProps {
-    balance: number,
-    sent: number,
-    received: number,
-    sendBalance: () => void,
-    receiveBalance: () => void
-}
-
-interface currentToken {
-    balance: string, 
-    sent: string, 
-    received: string
-}
+// interface currentToken {
+//     balance: string, 
+//     sent: string, 
+//     received: string
+// }
 
 export const TokenBalance = (): TokenProps => {
     // const getInitialValue = (key: string, defaultValue: number) => {

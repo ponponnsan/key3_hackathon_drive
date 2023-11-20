@@ -40,6 +40,14 @@ export interface TokenCardProps {
   received: number,
 }
 
+export interface TokenProps {
+  balance: number,
+  sent: number,
+  received: number,
+  sendBalance: () => void,
+  receiveBalance: () => void
+}
+
 export interface ISpeechRecognitionEvent {
   resultIndex: number; 
   isTrusted?: boolean;
