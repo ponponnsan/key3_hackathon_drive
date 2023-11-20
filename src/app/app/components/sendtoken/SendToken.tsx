@@ -32,7 +32,7 @@ const SendToken:any = () => {
     // トークンを送る際の処理
       try{
         if (mapsErrorMessage !== '') {
-          setErrorMessage('Failed to send token... please try again');
+          setErrorMessage(mapsErrorMessage);
           setShowPopup(true);
         } 
         await Promise.all(sendTokenRecords.map(record => 

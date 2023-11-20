@@ -20,6 +20,7 @@ const SendTokenQuery = (): { mapsErrorMessage: string; sendTokenRecords: TokenRe
           (position) => {
             setLatitude(position.coords.latitude.toString());
             setLongitude(position.coords.longitude.toString());
+            console.log(latitude, longitude)
           },
           (error) => {
             setmapsErrorMessage("位置情報の取得に失敗しました");
