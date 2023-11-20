@@ -1,11 +1,8 @@
 // components/WalletInfo.tsx
 import React from 'react';
 import Image from 'next/image';
+import {WalletInfoProps} from "../../utils/interfaces"
 
-interface WalletInfoProps {
-  accountName: string;
-  walletAddress: string;
-}
 
 const WalletInfo: React.FC<WalletInfoProps> = ({ accountName, walletAddress }) => {
   return (

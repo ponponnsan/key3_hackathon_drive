@@ -10,11 +10,34 @@ export interface IToken {
   latitude: string;
 }
 
+export interface ActionButtonProps {
+  mainText: string;
+  subText: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
 export interface PopupProps {
   isVisible: boolean;
   errorMessage?: string;
 }
 
+export interface TokenRecord {
+  licenseNumber: string;
+  address: string;
+  message: string;
+  latitude: string;
+  longitude: string;
+}
+
+export interface WalletInfoProps {
+  accountName: string;
+  walletAddress: string;
+}
+
+export interface TokenCardProps {
+  earnedTokens: number;
+  spentTokens: number;
+}
 
 export interface ISpeechRecognitionEvent {
   resultIndex: number; 
@@ -56,4 +79,9 @@ export interface ISpeechRecognition extends EventTarget {
   stop(): void;
 }
 
+export interface VoiceRecognitionButtonProps {
+  onStart: () => void;
+  onStop: () => void;
+  onTokenRequest: () => void;
+}
 

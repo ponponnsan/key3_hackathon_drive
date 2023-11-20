@@ -1,26 +1,20 @@
 "use client"
 import React, { useState, useEffect } from "react";
 import TokenCard from './TokenCard';
-import ActionButton from '../utils/button/ActionButton';
 import VoiceRecognitionButton from "../recognizevoice/recognizeSound"
 import Popup from './Popup';
 import { sendToken } from '../../utils/safe'
+import useSendTokenQuery from '@/app/hooks/useSendToken';
 
 
-const SendToken: React.FC = () => {
+
+const SendToken:any = () => {
   // ポップアップの表示状態を管理する状態
   const [showPopup, setShowPopup] = useState(false);
   const [isDrivingMode, setIsDrivingMode] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [licenseNumber, setlicenseNumber] = useState("")
+  const { mapsErrorMessage, sendTokenRecords } = useSendTokenQuery();
 
-  useEffect(() => {
-    // useEffect内でlocalStorageからデータを取得
-    const aalicenseNumber = localStorage.getItem("licenseNumber")
-    if (aalicenseNumber) {
-      setlicenseNumber(aalicenseNumber);
-    }
-  }, []);
 
   const handleVoiceStart = () => {
     // 音声認識開始時の処理
@@ -30,23 +24,26 @@ const SendToken: React.FC = () => {
   const handleVoiceStop = () => {
   };
 
+
   const handleVoiceRequest = async () => {
     // トークンを送る際の処理
-    try{
-      await sendToken(
-        licenseNumber, // 免許証番号
-        "0x1a4ac4bA30fA08e32F99A526DDF731f807b5a7F5", // 送付先アドレス
-        "ありがとう", // メッセージ
-        "35.666862", // 経度
-        "139.692616" // 緯度 
-      );
-
-      setShowPopup(true)
-    } catch (error) {
-      setErrorMessage('Failed to send token... please try again');
-      setShowPopup(true);
-    }
-  };
+      try{
+        await Promise.all(sendTokenRecords.map(record => 
+          sendToken(
+            record.licenseNumber,
+            record.address,
+            record.message,
+            record.latitude,
+            record.longitude
+          )
+        ));
+    
+        setShowPopup(true)
+      } catch (error) {
+        setErrorMessage('Failed to send token... please try again');
+        setShowPopup(true);
+      }
+    };
 
   useEffect(() => {
     // 1500ミリ秒（1.5秒）後にポップアップを非表示にする

@@ -1,9 +1,5 @@
 import React from 'react';
-
-interface TokenCardProps {
-  earnedTokens: number;
-  spentTokens: number;
-}
+import { TokenCardProps } from '../../utils/interfaces';
 
 const TokenCard: React.FC<TokenCardProps> = ({ earnedTokens, spentTokens }) => {
   return (

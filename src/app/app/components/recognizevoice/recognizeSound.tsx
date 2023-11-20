@@ -1,17 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ActionButton from '../utils/button/ActionButton';
 import IWindow from '../../utils/window';
+import { VoiceRecognitionButtonProps } from '@/app/utils/interfaces';
 
 // windowの型定義にIWindowを使う
 declare const window: IWindow;
 
 // ずっと会話が続くようにする。
-// BraGo, send tokensの文言を変える。
-interface VoiceRecognitionButtonProps {
-  onStart: () => void;
-  onStop: () => void;
-  onTokenRequest: () => void;
-}
 
 const VoiceRecognitionButton: React.FC<VoiceRecognitionButtonProps> = ({ onStart, onStop, onTokenRequest }) => {
   const [isListening, setIsListening] = useState(false);
