@@ -16,7 +16,7 @@ const AccountInfo = (): { accountInfos: AccountRecords } => {
         const username = localStorage.getItem("username");
         if (username && aawalletAddress) {
           setAccountName(username);
-          setWalletAddress(walletAddress);
+          setWalletAddress(aawalletAddress);
         }
       }, []);
 
