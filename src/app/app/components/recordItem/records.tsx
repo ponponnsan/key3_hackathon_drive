@@ -48,7 +48,6 @@ function Records(props: Props) {
       stopper.current = true;
 
       const map = new Map<string, BraGoTransfer[]>();
-
       transferLogs
         .filter(record => filter(record))
         .sort((a, b) => Date.parse(b.timestamp) - Date.parse(a.timestamp))
@@ -78,7 +77,7 @@ function Records(props: Props) {
           <RecordDetail
             from={showDetail.name}
             message={showDetail.message}
-            ammount={showDetail.ammount}
+            ammount={showDetail.ammount.toString()}
             timestamp={showDetail.timestamp}
             lat={Number(showDetail.latitude)}
             lng={Number(showDetail.longitude)}
@@ -108,7 +107,7 @@ function Records(props: Props) {
                               <RecordItem
                                 from={record.name}
                                 message={record.message}
-                                ammount={record.ammount}
+                                ammount={record.ammount.toString()}
                                 timestamp={record.timestamp}
                                 issend={record.issend} />
 

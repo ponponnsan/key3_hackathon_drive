@@ -7,17 +7,14 @@ export const useAddress = () => {
     const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         const licenseNumber = localStorage.getItem("licenseNumber");
-        console.log(licenseNumber);
 
         (async () => {
             // const address = await createAAWallet(licenseNumber as string);
-            // console.log(address)
             setIsLoading(false);
-            setAddress('0xcf6d953eD235B9B2Bf03b72fE08392a6f9d0edD8');
+            setAddress(address);
+            setAddress('0x983B272F9d69248E670b646538Eb86587C9c496c');   //デバッグ用にcardeneさんのアドレス固定
         })();
     }, [])
-
-    // aaWalletAddress: 0xcf6d953eD235B9B2Bf03b72fE08392a6f9d0edD8
 
     return {
         address,
