@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import { useContract } from "./useContract"
+import { useAddress } from "./useAddress";
+import { ethers } from "ethers";
 
 export type BraGoTransfer = {
   hash: string;
@@ -13,70 +16,52 @@ export type BraGoTransfer = {
 
 export const useBraGoTransferRecords = () => {
   const [isLoading, setIsLoading] = useState(true);
-
-  const braGoTransferRecords: BraGoTransfer[] = [
-    {
-      hash: Math.random().toString(32).substring(2),
-      name: "pon",
-      message: "ありがとう1",
-      ammount: 1,
-      latitude: "35.6894",
-      longitude: "139.6917",
-      timestamp: "2023-11-05 14:53",
-      issend: false
-    },
-    {
-      hash: Math.random().toString(32).substring(2),
-
-      name: "pon",
-      message: "ありがとう2",
-      ammount: 1,
-      latitude: "000",
-      longitude: "001",
-      timestamp: "2023-11-05 14:53",
-      issend: false
-    },
-    {
-      hash: Math.random().toString(32).substring(2),
-
-      name: "pon",
-      message: "ありがとう3",
-      ammount: 1,
-      latitude: "000",
-      longitude: "001",
-      timestamp: "2023-11-04 14:53",
-      issend: false
-    },
-    {
-      hash: Math.random().toString(32).substring(2),
-
-      name: "pon",
-      message: "ありがとう4",
-      ammount: 1,
-      latitude: "000",
-      longitude: "001",
-      timestamp: "2023-11-03 14:53",
-      issend: false
-    },
-    {
-      hash: Math.random().toString(32).substring(2),
-
-      name: "cardene",
-      message: "ありがとう4",
-      ammount: 1,
-      latitude: "000",
-      longitude: "001",
-      timestamp: "2023-11-17 14:53",
-      issend: true
-    },
-
-  ];
+  const { contract, isLoading: isContractLoading } = useContract();
+  const { address, isLoading: isAddressLoading } = useAddress();
+  const [transferLogs, setTransferLogs] = useState<BraGoTransfer[]>([]);
 
   useEffect(() => {
-    setIsLoading(false);
-  }, []);
+    if (isContractLoading || isAddressLoading) {
+      return;
+    }
+    const rpcUrl =
+      `https://rpc.zkatana.gelato.digital/`;
+    const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
+
+
+    (async () => {
+      const events = await contract!.queryFilter(
+        contract!.filters.BraGoTransfer(null, null, null, null, null, null)
+      );
+      const transferLogs: BraGoTransfer[] = [];
+      for (const log of events) {
+        // Eventのargsがない場合はスキップ
+        if (!log.args) continue;
+
+        const blochHash = log.blockHash;
+        const [from, to, amount, latitude, longitude, message] = log.args;
+        let issend: boolean | undefined = undefined;
+        if (from.toString() === address?.toString()) {
+          issend = false;
+        } else if (to.toString() === address?.toString()) {
+          issend = true;
+        }
+        let block = await provider.getBlock(log.blockNumber);
+
+        if (issend != undefined) {
+          transferLogs.push({
+            hash: blochHash, name: "test", message: message, ammount: amount, latitude: latitude,
+            longitude: longitude, issend: issend, timestamp: (new Date(block.timestamp * 1000)).toDateString()
+          })
+        }
+        setTransferLogs([...transferLogs]);
+        setIsLoading(false);
+      }
+    })()
+  }, [isContractLoading, isAddressLoading]);
+
   return {
-    braGoTransferRecords,
+    transferLogs,
     isLoading,
   };
 };
