@@ -8,7 +8,7 @@ import IconHandshakeOutline from "../recordItem/IconHandshakeOutline/IconHandsha
 interface Props {
   from: string;
   message: string;
-  ammount: number;
+  ammount: string;
   timestamp: string;
   lat: number;
   lng: number;
