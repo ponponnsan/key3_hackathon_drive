@@ -6,52 +6,11 @@ import {
     CONTRACT_ADDRESS,
 } from '../utils/config';
 
+import Abi from '../../../contracts/src/contracts/BraGo.sol/BraGo.json'
+
 export const useContract = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [contract, setContract] = useState<Contract | undefined>(undefined);
-    const abi = [{
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "from",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "to",
-                "type": "address"
-            },
-            {
-                "indexed": false,
-                "internalType": "uint256",
-                "name": "amount",
-                "type": "uint256"
-            },
-            {
-                "indexed": false,
-                "internalType": "string",
-                "name": "longitude",
-                "type": "string"
-            },
-            {
-                "indexed": false,
-                "internalType": "string",
-                "name": "latitude",
-                "type": "string"
-            },
-            {
-                "indexed": false,
-                "internalType": "string",
-                "name": "message",
-                "type": "string"
-            }
-        ],
-        "name": "BraGoTransfer",
-        "type": "event"
-    }];
 
     useEffect(() => {
         const rpcUrl =
@@ -64,7 +23,7 @@ export const useContract = () => {
         // Contractインスタンス作成
         const contract: Contract = new ethers.Contract(
             CONTRACT_ADDRESS,
-            abi,
+            Abi.abi,
             provider
         );
         setIsLoading(false);

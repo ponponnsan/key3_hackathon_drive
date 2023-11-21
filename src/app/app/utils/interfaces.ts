@@ -1,5 +1,5 @@
 export interface IUser {
-    licenseNumber?: string;
+  licenseNumber?: string;
 }
 
 export interface IToken {
@@ -44,19 +44,20 @@ export interface TokenProps {
   balance: number,
   sent: number,
   received: number,
-  sendBalance: () => void,
-  receiveBalance: () => void
+  isLoading: boolean,
+  // sendBalance: () => void,
+  // receiveBalance: () => void
 }
 
 export interface ISpeechRecognitionEvent {
-  resultIndex: number; 
+  resultIndex: number;
   isTrusted?: boolean;
   results: {
     isFinal: boolean;
     [key: number]:
-      {
-          transcript: string;
-      };
+    {
+      transcript: string;
+    };
   }[];
 }
 
