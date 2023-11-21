@@ -4,7 +4,7 @@ import { Contract, ethers } from "ethers";
 
 import {
     CONTRACT_ADDRESS,
-} from '../common/config';
+} from '../utils/config';
 
 export const useContract = () => {
     const [isLoading, setIsLoading] = useState(true);

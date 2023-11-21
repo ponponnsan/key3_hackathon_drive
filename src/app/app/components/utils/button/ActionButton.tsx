@@ -1,10 +1,6 @@
 import React from 'react';
+import { ActionButtonProps } from '@/app/utils/interfaces';
 
-interface ActionButtonProps {
-  mainText: string;
-  subText: string;
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-}
 
 const ActionButton: React.FC<ActionButtonProps> = ({ mainText, subText, onClick }) => {
   return (
