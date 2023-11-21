@@ -3,17 +3,21 @@ import {
   PRIVATE_KEY,
   PROVIDER_URL,
   CONTRACT_ADDRESS,
+  GELATO_RELAY_API_KEY,
 } from './config';
 import {
   EthAdapter,
   MetaTransactionData,
+  MetaTransactionOptions,
   OperationType,
+  RelayTransaction,
 } from '@safe-global/safe-core-sdk-types';
 import crypto from 'crypto';
 import Safe, {
   EthersAdapter,
   SafeAccountConfig,
   SafeFactory,
+  getSafeContract,
 } from 'zkatana-gelato-protocol-kit';
 import { GelatoRelayPack } from 'zkatana-gelato-relay-kit';
 import ContractInfo from './abi.json';
@@ -105,7 +109,7 @@ export const sendToken = async (
   longitude: string,
     latitude: string
 ) => {
-  const { safeSDK, signer } = await getSafeWallet(salt);
+  const { safeSDK, signer, ethAdapterOwner } = await getSafeWallet(salt);
   const tokenContract = new ethers.Contract(
     CONTRACT_ADDRESS,
     ContractInfo.abi,
@@ -133,11 +137,22 @@ export const sendToken = async (
 
   console.log(`safeTransactionData: ${JSON.stringify(safeTransactionData)}`);
 
-  const relayKit = new GelatoRelayPack();
+  const relayKit = new GelatoRelayPack(GELATO_RELAY_API_KEY);
+
+  const options: MetaTransactionOptions = {
+    gasLimit: "8000000",
+    isSponsored: true
+  }
 
   const safeTransaction = await relayKit.createRelayedTransaction({
     safe: safeSDK,
     transactions: safeTransactionData,
+    options,
+  });
+
+  const safeSingletonContract = await getSafeContract({
+    ethAdapter: ethAdapterOwner,
+    safeVersion: await safeSDK.getContractVersion(),
   });
 
   const signedSafeTransaction = await safeSDK.signTransaction(safeTransaction);
@@ -146,10 +161,27 @@ export const sendToken = async (
     `signedSafeTransaction: ${JSON.stringify(signedSafeTransaction)}`
   );
 
-  const response = await relayKit.executeRelayTransaction(
-    signedSafeTransaction,
-    safeSDK
-  );
+  const encodedTx = safeSingletonContract.encode("execTransaction", [
+    signedSafeTransaction.data.to,
+    signedSafeTransaction.data.value,
+    signedSafeTransaction.data.data,
+    signedSafeTransaction.data.operation,
+    signedSafeTransaction.data.safeTxGas,
+    signedSafeTransaction.data.baseGas,
+    signedSafeTransaction.data.gasPrice,
+    signedSafeTransaction.data.gasToken,
+    signedSafeTransaction.data.refundReceiver,
+    signedSafeTransaction.encodedSignatures(),
+  ]);
+
+  const relayTransaction: RelayTransaction = {
+    target: aaWalletAddress,
+    encodedTransaction: encodedTx,
+    chainId: 1261120,
+    options,
+  };
+
+  const response = await relayKit.relayTransaction(relayTransaction);
 
   console.log(
     `Relay Transaction Task ID: https://relay.gelato.digital/tasks/status/${response.taskId}`
@@ -158,4 +190,3 @@ export const sendToken = async (
   console.log(`response: ${JSON.stringify(response)}`);
   return response.taskId
 };
-
