@@ -3,30 +3,34 @@ import { TokenRecord } from "../utils/interfaces";
 
 
 // 送信先アドレスはGPSから取得できている前提
-const SendTokenQuery = (): { mapsErrorMessage: string; sendTokenRecords: TokenRecord[] } => {
+const SendTokenQuery = (): { mapsErrorMessage: string; sendTokenRecords: TokenRecord[]; isLoading: boolean } => {
     const [licenseNumber, setLicenseNumber] = useState("");
     const [latitude, setLatitude] = useState("");
     const [longitude, setLongitude] = useState("");
     const [message, setMessage] = useState("");
     const [mapsErrorMessage, setmapsErrorMessage] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const aalicenseNumber = localStorage.getItem("licenseNumber");
-        if (aalicenseNumber) {
-          setLicenseNumber(aalicenseNumber);
-        }
+      const aalicenseNumber = localStorage.getItem("licenseNumber");
+      if (aalicenseNumber) {
+        setLicenseNumber(aalicenseNumber);
+      }
 
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            setLatitude(position.coords.latitude.toString());
-            setLongitude(position.coords.longitude.toString());
-            console.log(latitude, longitude)
-          },
-          (error) => {
-            setmapsErrorMessage("位置情報の取得に失敗しました");
-          }
-        );
-      }, []);
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setLatitude(position.coords.latitude.toString());
+          setLongitude(position.coords.longitude.toString());
+          setIsLoading(false); // 位置情報の取得が完了したら isLoading を false に設定
+        },
+        (error) => {
+          setmapsErrorMessage("位置情報の取得に失敗しました");
+          setIsLoading(false); // エラーが発生したら isLoading を false に設定
+
+        }
+      );
+    }, []);
+
 
     useEffect(() => {
         setMessage("ありがとう");
@@ -49,9 +53,11 @@ const SendTokenQuery = (): { mapsErrorMessage: string; sendTokenRecords: TokenRe
         },
     ];
 
+    
     return {
         mapsErrorMessage,
-        sendTokenRecords
+        sendTokenRecords,
+        isLoading
     };
 }
 

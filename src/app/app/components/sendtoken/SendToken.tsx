@@ -13,7 +13,7 @@ const SendToken:any = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [isDrivingMode, setIsDrivingMode] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const { mapsErrorMessage, sendTokenRecords } = useSendTokenQuery();
+  const { mapsErrorMessage, sendTokenRecords, isLoading } = useSendTokenQuery();
   const { balance, sent, received, sendBalance, receiveBalance} = TokenBalance();
   // const { } = currentBalance();
   
@@ -31,20 +31,22 @@ const SendToken:any = () => {
   const handleVoiceRequest = async () => {
     // トークンを送る際の処理
       try{
-        if (mapsErrorMessage !== '') {
-          setErrorMessage(mapsErrorMessage);
-          setShowPopup(true);
-        } 
-        await Promise.all(sendTokenRecords.map(record => 
-          sendToken(
+          
+        await Promise.all(sendTokenRecords.map(record => {
+          console.log(`latitude: ${record.latitude}, longitude: ${record.longitude}`);
+
+          return sendToken(
             record.licenseNumber,
             record.address,
             record.message,
             record.latitude,
             record.longitude
           )
-        ));
-    
+        }));
+        if (mapsErrorMessage !== '') {
+          setErrorMessage(mapsErrorMessage);
+          setShowPopup(true);
+        } 
         setShowPopup(true);
         sendBalance();
       } catch (error) {
@@ -62,6 +64,11 @@ const SendToken:any = () => {
     // コンポーネントがアンマウントされるときにタイマーをクリアする
     return () => clearTimeout(timer);
   }, [showPopup]);
+
+  if (isLoading) {
+    // ロード中の場合はローディングメッセージを表示
+    return <div>Loading...</div>;
+  }
 
   return (
       <>
