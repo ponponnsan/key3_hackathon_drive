@@ -78,7 +78,7 @@ const SendToken: any = () => {
         onStop={handleVoiceStop}
         onTokenRequest={handleVoiceRequest}
       />
-      {showPopup && <Popup isVisible={showPopup} errorMessage={errorMessage} />}
+      {showPopup && <Popup isVisible={showPopup} errorMessage={errorMessage} balance={balance} />}
     </>
   );
 };

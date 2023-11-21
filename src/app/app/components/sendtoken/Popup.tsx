@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import {PopupProps } from "../../utils/interfaces"
+import { PopupProps } from "../../utils/interfaces"
 
 
-const Popup = ({ isVisible, errorMessage }: PopupProps) => {
+const Popup = ({ isVisible, errorMessage, balance }: PopupProps) => {
   const isError = !!errorMessage;
   return (
     <>
@@ -35,7 +35,7 @@ const Popup = ({ isVisible, errorMessage }: PopupProps) => {
               </div>
               <div className="px-4 py-3">
                 <p className="text-sm font-semibold text-green-600">
-                  {isError ? "": 'Token残高 21'}
+                  {isError ? "" : `Token残高 ${balance}`}
                 </p>
               </div>
             </div>
@@ -46,4 +46,4 @@ const Popup = ({ isVisible, errorMessage }: PopupProps) => {
   );
 };
 
-  export default Popup;
+export default Popup;

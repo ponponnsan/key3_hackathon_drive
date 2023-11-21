@@ -19,6 +19,7 @@ export interface ActionButtonProps {
 export interface PopupProps {
   isVisible: boolean;
   errorMessage?: string;
+  balance: number;
 }
 
 export interface TokenRecord {
