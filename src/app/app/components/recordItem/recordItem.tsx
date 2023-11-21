@@ -9,7 +9,7 @@ interface Props {
   className?: string;
   from: string;
   message: string;
-  ammount: number;
+  ammount: string;
   timestamp: string;
   issend: boolean;
 }
