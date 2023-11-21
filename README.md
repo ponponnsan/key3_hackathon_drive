@@ -18,7 +18,8 @@ Pigeonは、平和の象徴と伝書鳩の意味を込めて名付けられま�
 
 Vercelリンク。
 develop -> https://key3-hackathon-drive.vercel.app/
-main -> pigeon.com
+
+main -> www.drive-pigeon.com
 
 
 
