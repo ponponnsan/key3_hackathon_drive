@@ -1,26 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ActionButton from '../utils/button/ActionButton';
-import IWindow from './window';
+import IWindow from '../../utils/window';
+import { VoiceRecognitionButtonProps } from '@/app/utils/interfaces';
 
 // windowの型定義にIWindowを使う
 declare const window: IWindow;
 
 // ずっと会話が続くようにする。
-// BraGo, send tokensの文言を変える。
-interface VoiceRecognitionButtonProps {
-  onStart: () => void;
-  onStop: () => void;
-  onTokenRequest: () => void;
-}
 
 const VoiceRecognitionButton: React.FC<VoiceRecognitionButtonProps> = ({ onStart, onStop, onTokenRequest }) => {
   const [isListening, setIsListening] = useState(false);
   const [text, setText] = useState<string>("");
-  const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
 
   
   const handleRecogniteStart = () => {
+    const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     const recognition = new Recognition();
     recognition.lang = "ja-JP";
     recognition.interimResults = false;
@@ -83,8 +78,8 @@ const VoiceRecognitionButton: React.FC<VoiceRecognitionButtonProps> = ({ onStart
 
   return (
     <ActionButton
-      mainText={isListening ? "Listening..." : "BraGo, send tokens"}
-      subText={isListening ? text : "アプリ終了する時どうするか書く"}
+      mainText={isListening ? "Listening..." : "Start Driving"}
+      subText={isListening ? text : `Turn on GPS to get location information.\n Tap to start voice instructions`}
       onClick={handleVoiceClick}
     />
   );

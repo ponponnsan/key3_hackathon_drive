@@ -1,16 +1,18 @@
-// pages/index.tsx
-import React from 'react';
+"use client"
+import React, { useEffect, useState } from 'react';
 import WalletInfo from './WalletInfo';
+import AccountInfo from '@/app/hooks/useAccount';
 
 const Account: React.FC = () => {
+  const { accountInfos } = AccountInfo();
+
   return (
     <div>
       {/* ヘッダーやフッターなどの他のコンポーネントもここに含める */}
       <WalletInfo
-        accountName="Account Name"
-        walletAddress="0x8426d8d1252bc3325b..."
+        accountName={accountInfos.accountName}
+        walletAddress={accountInfos.walletAddress}
       />
-      {/* ... */}
     </div>
   );
 };
