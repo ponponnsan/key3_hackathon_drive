@@ -16,8 +16,7 @@ const ConfirmLicense: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
-        
+      <div className="w-full max-w-md p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md">
         {/* 画像ファイルの表示 */}
         <div className="flex justify-center mb-4">
           <Image
@@ -29,8 +28,8 @@ const ConfirmLicense: React.FC = () => {
           />
         </div>
         {/* サービス名と説明 */}
-        <p className="text-center mb-4">車社会に「ありがとう」を増やし、「良い行動」を増やす</p>
-        <p className="text-sm text-center mb-8">Pigeonを通じて、安全で快適な運転体験をサポートします。</p>
+        <p className="text-center mb-4 dark:text-white">車社会に「ありがとう」と「良い行動」を増やす</p>
+        <p className="text-sm text-center mb-8 dark:text-white">Pigeonを通じて、安全で快適な運転体験をサポートします。</p>
         <ActionButton
             mainText="はじめる"
             subText=""
