@@ -19,11 +19,27 @@ export const useBraGoTransferRecords = () => {
   const { contract, isLoading: isContractLoading } = useContract();
   const { accountInfos } = useAccount();
   const [transferLogs, setTransferLogs] = useState<BraGoTransfer[]>([]);
+  const [reload, setReload] = useState(true);
 
   useEffect(() => {
     if (isContractLoading) {
       return;
     }
+    (async () => {
+
+      contract!.on(contract!.filters.BraGoTransfer(null, null, null, null, null, null), () => {
+        setReload(true)
+      });
+    })();
+
+  }, [isContractLoading])
+
+  useEffect(() => {
+    if (isContractLoading) {
+      return;
+    }
+    if (!reload) return;
+
     const rpcUrl =
       `https://rpc.zkatana.gelato.digital/`;
     const provider = new ethers.providers.JsonRpcProvider(rpcUrl);
@@ -34,7 +50,6 @@ export const useBraGoTransferRecords = () => {
         contract!.filters.BraGoTransfer(null, null, null, null, null, null)
       );
       const transferLogs: BraGoTransfer[] = [];
-      console.log(events)
       for (const log of events) {
         // Eventのargsがない場合はスキップ
         if (!log.args) continue;
@@ -55,13 +70,16 @@ export const useBraGoTransferRecords = () => {
             longitude: longitude, issend: issend, timestamp: (new Date(block.timestamp * 1000)).toDateString()
           })
         }
-        console.log(transferLogs)
       }
+      console.log(transferLogs)
       setTransferLogs([...transferLogs]);
       setIsLoading(false);
-
+      setReload(false);
     })()
-  }, [isContractLoading]);
+
+
+  }, [isContractLoading, reload]);
+
 
   return {
     transferLogs,
