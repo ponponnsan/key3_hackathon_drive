@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import ActionButton from '../utils/button/ActionButton'; 
-import SignupPopup from './signupPopup'; 
+import ActionButton from '../utils/button/ActionButton';
+import SignupPopup from './signupPopup';
 import { isNumericString } from '../utils/errorhandling';
 import { createAAWallet } from '../../utils/safe'
 
@@ -39,8 +39,8 @@ const LicenseNumberInput: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
-    if (isNumericString(licenseNumber)){
+
+    if (isNumericString(licenseNumber)) {
       // createAAWallet 関数を呼び出し
       const aaWalletAddress = await createAAWallet(licenseNumber);
       localStorage.setItem("licenseNumber", licenseNumber);
@@ -49,10 +49,10 @@ const LicenseNumberInput: React.FC = () => {
       // 処理が成功したら、ポップアップを表示し、アカウントページへ遷移
       setShowPopup(true);
 
-      
+
     } else {
       setErrorMessage('Your license number is invalid. Please ensure it is correct.');
-      setShowPopup(true); 
+      setShowPopup(true);
     }
   };
 
@@ -91,7 +91,7 @@ const LicenseNumberInput: React.FC = () => {
             subText=""
           />
         </form>
-        {showPopup && <SignupPopup isVisible={showPopup} errorMessage={errorMessage} />}
+        {showPopup && <SignupPopup isVisible={showPopup} errorMessage={errorMessage} balance={0} />}
       </div>
     </div>
   );

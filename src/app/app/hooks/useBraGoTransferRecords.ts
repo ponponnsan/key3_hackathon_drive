@@ -43,9 +43,9 @@ export const useBraGoTransferRecords = () => {
         const [from, to, amount, latitude, longitude, message] = log.args;
         let issend: boolean | undefined = undefined;
         if (from.toString() === accountInfos.walletAddress.toString()) {
-          issend = false;
-        } else if (to.toString() === accountInfos.walletAddress.toString()) {
           issend = true;
+        } else if (to.toString() === accountInfos.walletAddress.toString()) {
+          issend = false;
         }
         let block = await provider.getBlock(log.blockNumber);
 
@@ -55,9 +55,11 @@ export const useBraGoTransferRecords = () => {
             longitude: longitude, issend: issend, timestamp: (new Date(block.timestamp * 1000)).toDateString()
           })
         }
-        setTransferLogs([...transferLogs]);
-        setIsLoading(false);
+        console.log(transferLogs)
       }
+      setTransferLogs([...transferLogs]);
+      setIsLoading(false);
+
     })()
   }, [isContractLoading]);
 
