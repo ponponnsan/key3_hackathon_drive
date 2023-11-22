@@ -46,9 +46,7 @@ export const TokenBalance = (): TokenProps => {
         setSent(sendTokenCount);
         setReceived(recvTokenCount);
 
-
-
-    }, [isContractLoading, logLoading])
+    }, [isContractLoading, logLoading, transferLogs])
 
     // useEffect(() => {
     // // sent が更新された後に localStorage に保存します
