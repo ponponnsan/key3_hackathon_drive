@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useContract } from "./useContract"
-import { useAddress } from "./useAddress";
 import { ethers } from "ethers";
+import useAccount from "./useAccount";
 
 export type BraGoTransfer = {
   hash: string;
@@ -17,11 +17,11 @@ export type BraGoTransfer = {
 export const useBraGoTransferRecords = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { contract, isLoading: isContractLoading } = useContract();
-  const { address, isLoading: isAddressLoading } = useAddress();
+  const { accountInfos } = useAccount();
   const [transferLogs, setTransferLogs] = useState<BraGoTransfer[]>([]);
 
   useEffect(() => {
-    if (isContractLoading || isAddressLoading) {
+    if (isContractLoading) {
       return;
     }
     const rpcUrl =
@@ -34,6 +34,7 @@ export const useBraGoTransferRecords = () => {
         contract!.filters.BraGoTransfer(null, null, null, null, null, null)
       );
       const transferLogs: BraGoTransfer[] = [];
+      console.log(events)
       for (const log of events) {
         // Eventのargsがない場合はスキップ
         if (!log.args) continue;
@@ -41,10 +42,10 @@ export const useBraGoTransferRecords = () => {
         const blochHash = log.blockHash;
         const [from, to, amount, latitude, longitude, message] = log.args;
         let issend: boolean | undefined = undefined;
-        if (from.toString() === address?.toString()) {
-          issend = false;
-        } else if (to.toString() === address?.toString()) {
+        if (from.toString() === accountInfos.walletAddress.toString()) {
           issend = true;
+        } else if (to.toString() === accountInfos.walletAddress.toString()) {
+          issend = false;
         }
         let block = await provider.getBlock(log.blockNumber);
 
@@ -54,11 +55,13 @@ export const useBraGoTransferRecords = () => {
             longitude: longitude, issend: issend, timestamp: (new Date(block.timestamp * 1000)).toDateString()
           })
         }
-        setTransferLogs([...transferLogs]);
-        setIsLoading(false);
+        console.log(transferLogs)
       }
+      setTransferLogs([...transferLogs]);
+      setIsLoading(false);
+
     })()
-  }, [isContractLoading, isAddressLoading]);
+  }, [isContractLoading]);
 
   return {
     transferLogs,

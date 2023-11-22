@@ -28,8 +28,8 @@ export default function RecordItem(props: Props) {
               <span className={classes.label}>{props.from}さん</span>
               <span className={classes.label2}>{props.message}</span>
               {props.issend ?
-                <span className={classes.label3}>が届きました</span> :
-                <span className={classes.label3}>を贈りました</span>
+                <span className={classes.label3}>を贈りました</span> :
+                <span className={classes.label3}>が届きました</span>
 
               }
             </p>
