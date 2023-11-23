@@ -1,5 +1,5 @@
 export interface IUser {
-    licenseNumber?: string;
+  licenseNumber?: string;
 }
 
 export interface IToken {
@@ -14,11 +14,13 @@ export interface ActionButtonProps {
   mainText: string;
   subText: string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  style?: React.CSSProperties;
 }
 
 export interface PopupProps {
   isVisible: boolean;
   errorMessage?: string;
+  balance: number;
 }
 
 export interface TokenRecord {
@@ -32,6 +34,7 @@ export interface TokenRecord {
 export interface WalletInfoProps {
   accountName: string;
   walletAddress: string;
+  licenseNumber: string;
 }
 
 export interface TokenCardProps {
@@ -44,19 +47,20 @@ export interface TokenProps {
   balance: number,
   sent: number,
   received: number,
-  sendBalance: () => void,
-  receiveBalance: () => void
+  isLoading: boolean,
+  // sendBalance: () => void,
+  // receiveBalance: () => void
 }
 
 export interface ISpeechRecognitionEvent {
-  resultIndex: number; 
+  resultIndex: number;
   isTrusted?: boolean;
   results: {
     isFinal: boolean;
     [key: number]:
-      {
-          transcript: string;
-      };
+    {
+      transcript: string;
+    };
   }[];
 }
 
@@ -89,6 +93,7 @@ export interface ISpeechRecognition extends EventTarget {
 }
 
 export interface VoiceRecognitionButtonProps {
+  style?: React.CSSProperties;
   onStart: () => void;
   onStop: () => void;
   onTokenRequest: () => void;

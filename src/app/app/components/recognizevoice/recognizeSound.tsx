@@ -2,13 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import ActionButton from '../utils/button/ActionButton';
 import IWindow from '../../utils/window';
 import { VoiceRecognitionButtonProps } from '@/app/utils/interfaces';
+import Image from 'next/image';
 
 // windowの型定義にIWindowを使う
 declare const window: IWindow;
 
 // ずっと会話が続くようにする。
 
-const VoiceRecognitionButton: React.FC<VoiceRecognitionButtonProps> = ({ onStart, onStop, onTokenRequest }) => {
+const VoiceRecognitionButton: React.FC<VoiceRecognitionButtonProps> = ({ style, onStart, onStop, onTokenRequest }) => {
   const [isListening, setIsListening] = useState(false);
   const [text, setText] = useState<string>("");
 
@@ -77,10 +78,11 @@ const VoiceRecognitionButton: React.FC<VoiceRecognitionButtonProps> = ({ onStart
   };
 
   return (
-    <ActionButton
+    <ActionButton 
       mainText={isListening ? "Listening..." : "Start Driving"}
-      subText={isListening ? text : `Turn on GPS to get location information.\n Tap to start voice instructions`}
+      subText={isListening ? text : `「トークン 送って」\n Tap to start voice instructions`}
       onClick={handleVoiceClick}
+      style={style}
     />
   );
 };

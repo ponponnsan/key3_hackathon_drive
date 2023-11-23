@@ -4,27 +4,25 @@ import Link from 'next/link';
 
 const Footer: React.FC = () => {
   return (
-    <footer style={{
-      display: 'flex',
-      justifyContent: 'space-around',
-      padding: '10px',
-      borderTop: '1px solid #eaeaea',
-      position: 'fixed', // 位置を固定する
-      left: 0, // 左端からの位置
-      bottom: 0, // 下端からの位置
-      right: 0, // 右端からの位置
-      backgroundColor: '#fff', // 背景色を白に指定
-      zIndex: 1000 // 他の要素の上に表示するためのz-index
-    }}>
-      <Link href="/history" passHref>
-          <Image src="/handshake-outline.png" alt="historyIcon" width={30} height={30} />
-      </Link>
-      <Link href="/send" passHref>
-        <Image src="/sendIcon.svg" alt="sendIcon" width={30} height={30} />
-      </Link>
-      <Link href="/account" passHref>
-        <Image src="/footerAccount.svg" alt="footerAccount" width={30} height={30} />
-      </Link>
+    <footer className="flex justify-around items-center px-4 py-2 fixed inset-x-0 bottom-0 bg-white border-t border border-gray-300 z-5 rounded-full">
+    <Link href="/history" passHref>
+      <div className="flex flex-col items-center text-center hover:bg-green-200 dark:hover:bg-gray-200 p-2 rounded-full transition-all duration-300 text-gray-400">
+        <Image src="/handshake-outline.png" alt="historyIcon" width={20} height={20} />
+        <span>history</span>
+      </div>
+    </Link>
+    <Link href="/send" passHref>
+      <div className="flex flex-col items-center text-center hover:bg-green-200 dark:hover:bg-gray-200 p-2 rounded-full transition-all duration-300 text-gray-400">
+        <Image src="/sendIcon.svg" alt="sendIcon" width={20} height={20} />
+        <span>send</span>
+      </div>
+    </Link>
+    <Link href="/account" passHref>
+      <div className="flex flex-col items-center text-center hover:bg-green-200 dark:hover:bg-gray-200 p-2 rounded-full transition-all duration-300 text-gray-400">
+        <Image src="/footerAccount.svg" alt="footerAccount" width={20} height={20} />
+        <span>account</span>
+      </div>
+    </Link>
     </footer>
   );
 };

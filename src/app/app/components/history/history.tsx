@@ -22,10 +22,10 @@ export default function History() {
         <Records category={RecordsCategory.ALL} />{" "}
       </TabPanel>
       <TabPanel>
-        <Records category={RecordsCategory.Recv} />{" "}
+        <Records category={RecordsCategory.Send} />{" "}
       </TabPanel>
       <TabPanel>
-        <Records category={RecordsCategory.Send} />{" "}
+        <Records category={RecordsCategory.Recv} />{" "}
       </TabPanel>
     </Tabs>
   );
