@@ -73,7 +73,7 @@ const SendToken: any = () => {
   return (
     <>
       <TokenCard balance={balance} sent={sent} received={received} />
-      <div className="flex flex-col min-h-screen bg-purple-400 rounded-md mt-32">
+      <div className="flex flex-col min-h-screen bg-purple-400 dark:bg-gray-200 rounded-md mt-32">
         <VoiceRecognitionButton
           style={{ backgroundColor: 'white' }}
           onStart={handleVoiceStart}

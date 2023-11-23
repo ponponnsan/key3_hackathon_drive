@@ -32,9 +32,7 @@ const Header: React.FC = () => {
       padding: '5px',
       borderBottom: '1px solid #eaeaea',
     }}>
-    <div className="bg-purple-50">
-      {headerContent}
-    </div>
+    {headerContent}
 
     </header>
   );
