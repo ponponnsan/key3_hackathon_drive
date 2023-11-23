@@ -1,35 +1,39 @@
 "use client"
 import React from 'react';
 import { useRouter, usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 const Header: React.FC = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  let headerText = '';
+  let headerContent; // JSX.Elementを保持できるように変数の名前と型を変更
   switch (pathname) {
     case '/history':
-      headerText = '履歴';
+      headerContent = <h1>履歴</h1>;
       break;
     case '/send':
-      headerText = '送る';
+      headerContent = <h1>贈る</h1>;
       break;
     case '/account':
-      headerText = 'アカウント';
+      headerContent = <h1>アカウント</h1>;
       break;
     default:
-      headerText = 'Pigeon';
+      headerContent =      
+        <Image src="/pigeonLogolight.svg" alt="Pigeon" width={150} height={50} />
   }
+
 
   return (
     <header style={{
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      padding: '10px',
+      padding: '5px',
       borderBottom: '1px solid #eaeaea',
     }}>
-      <h1>{headerText}</h1>
+    {headerContent}
+
     </header>
   );
 };

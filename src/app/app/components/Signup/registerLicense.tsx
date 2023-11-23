@@ -21,11 +21,11 @@ const LicenseNumberInput: React.FC = () => {
       timer = setTimeout(() => {
         setShowPopup(false);
         router.push('/account');
-      }, 1500);
+      }, 2500);
     } else {
       timer = setTimeout(() => {
         setShowPopup(false);
-      }, 1500)
+      }, 2500)
     }
 
     // コンポーネントがアンマウントされるときにタイマーをクリアする
@@ -59,11 +59,11 @@ const LicenseNumberInput: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-xs p-6 bg-white rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold text-center mb-4">Signup</h1>
+      <div className="w-full max-w-xs p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md">
+        <h1 className="text-2xl text-gray-700 dark:text-white  font-bold text-center mb-4">Signup</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="license-number" className="block text-gray-700 text-sm font-bold mb-2">
+            <label htmlFor="license-number" className="block text-gray-700 dark:text-white text-sm font-bold mb-2">
               ユーザー名を入力
             </label>
             <input
@@ -74,7 +74,7 @@ const LicenseNumberInput: React.FC = () => {
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               required
             />
-            <label htmlFor="license-number" className="block text-gray-700 text-sm font-bold mb-2">
+            <label htmlFor="license-number" className="block text-gray-700 dark:text-white text-sm font-bold mb-2">
               運転免許証番号を入力
             </label>
             <input

@@ -15,9 +15,10 @@ const ConfirmLicense: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen">
       <div className="w-full max-w-md p-6 bg-white dark:bg-gray-900 rounded-lg shadow-md">
         {/* 画像ファイルの表示 */}
+        
         <div className="flex justify-center mb-4">
           <Image
             src="/Frame_48096317.png" // 画像のパスを適宜変更してください
