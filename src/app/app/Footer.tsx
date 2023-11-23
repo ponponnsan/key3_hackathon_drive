@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
     <Link href="/send" passHref>
       <div className="flex flex-col items-center text-center hover:bg-green-200 dark:hover:bg-gray-200 p-2 rounded-full transition-all duration-300 text-gray-400">
         <Image src="/sendIcon.svg" alt="sendIcon" width={20} height={20} />
-        <span>send</span>
+        <span>sending</span>
       </div>
     </Link>
     <Link href="/account" passHref>
