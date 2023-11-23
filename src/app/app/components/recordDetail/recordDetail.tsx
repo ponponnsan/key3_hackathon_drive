@@ -51,8 +51,8 @@ export default function RecordDetail(props: Props) {
           <span >{props.from}さん</span>
           <span >{props.message}</span>
           {props.issend ?
-            <span >が届きました</span> :
-            <span >を贈りました</span>
+            <span >を贈りました</span> :
+            <span >が届きました</span>
 
           }
 
