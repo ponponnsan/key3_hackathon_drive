@@ -39,14 +39,14 @@ const SendTokenQuery = (): { mapsErrorMessage: string; sendTokenRecords: TokenRe
     const sendTokenRecords = [
         {
             licenseNumber, // 免許証番号
-            address: "0x1a4ac4bA30fA08e32F99A526DDF731f807b5a7F5", // 送付先アドレス
+            address: "0x768403FE32b6FbE2E53bF72175679ec5db7d4AaB", // 送付先アドレス
             message, // メッセージ
             latitude, // 緯度
             longitude // 経度 
         },
         {
             licenseNumber, // 免許証番号
-            address: "0x694AecE1f422DF3c2B8F81CC5059065627f5F185", // 送付先アドレス
+            address: "0xece27cf19B0921ce013368643e11C2a88A26701e", // 送付先アドレス
             message, // メッセージ
             latitude, // 緯度
             longitude // 経度 
