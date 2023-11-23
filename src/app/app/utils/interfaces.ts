@@ -14,6 +14,7 @@ export interface ActionButtonProps {
   mainText: string;
   subText: string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  style?: React.CSSProperties;
 }
 
 export interface PopupProps {
@@ -33,6 +34,7 @@ export interface TokenRecord {
 export interface WalletInfoProps {
   accountName: string;
   walletAddress: string;
+  licenseNumber: string;
 }
 
 export interface TokenCardProps {
@@ -91,6 +93,7 @@ export interface ISpeechRecognition extends EventTarget {
 }
 
 export interface VoiceRecognitionButtonProps {
+  style?: React.CSSProperties;
   onStart: () => void;
   onStop: () => void;
   onTokenRequest: () => void;

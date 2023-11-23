@@ -12,6 +12,7 @@ const Account: React.FC = () => {
       <WalletInfo
         accountName={accountInfos.accountName}
         walletAddress={accountInfos.walletAddress}
+        licenseNumber={accountInfos.licenseNumber}
       />
     </div>
   );

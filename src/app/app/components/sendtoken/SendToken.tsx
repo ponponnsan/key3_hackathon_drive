@@ -6,7 +6,7 @@ import Popup from './Popup';
 import { sendToken } from '../../utils/safe'
 import useSendTokenQuery from '@/app/hooks/useSendToken';
 import { TokenBalance } from "@/app/hooks/useBalance";
-// , currentBalance
+
 
 const SendToken: any = () => {
   // ポップアップの表示状態を管理する状態
@@ -56,10 +56,10 @@ const SendToken: any = () => {
   };
 
   useEffect(() => {
-    // 1500ミリ秒（1.5秒）後にポップアップを非表示にする
+    // ポップアップを非表示にする
     const timer = setTimeout(() => {
       setShowPopup(false);
-    }, 2000);
+    }, 2500);
 
     // コンポーネントがアンマウントされるときにタイマーをクリアする
     return () => clearTimeout(timer);
@@ -73,11 +73,14 @@ const SendToken: any = () => {
   return (
     <>
       <TokenCard balance={balance} sent={sent} received={received} />
-      <VoiceRecognitionButton
-        onStart={handleVoiceStart}
-        onStop={handleVoiceStop}
-        onTokenRequest={handleVoiceRequest}
-      />
+      <div className="flex flex-col min-h-screen bg-purple-400 rounded-md mt-32">
+        <VoiceRecognitionButton
+          style={{ backgroundColor: 'white' }}
+          onStart={handleVoiceStart}
+          onStop={handleVoiceStop}
+          onTokenRequest={handleVoiceRequest}
+        />
+      </div>
       {showPopup && <Popup isVisible={showPopup} errorMessage={errorMessage} balance={balance} />}
     </>
   );
