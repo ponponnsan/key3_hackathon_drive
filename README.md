@@ -39,6 +39,7 @@ https://github.com/ponponnsan/key3_hackathon_drive/assets/61935109/40001dc3-9093
 
 
 ## 機能一覧
+画面は開発中のものです。
 
 ### Sign Up
 
